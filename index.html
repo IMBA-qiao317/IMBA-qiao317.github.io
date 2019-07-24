@@ -69,6 +69,206 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-网络编程-Python实现" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/24/网络编程-Python实现/" class="article-date">
+  <time datetime="2019-07-24T09:40:57.000Z" itemprop="datePublished">2019-07-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/24/网络编程-Python实现/">网络编程(Python实现)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>@[toc]</p>
+<h2 id="网络通信概述"><a href="#网络通信概述" class="headerlink" title="网络通信概述"></a>网络通信概述</h2><p><strong>什么是网络？</strong><br>网络就是一种辅助双法或者多方能连接在一起的工具。<br>如果没有网络，可想单机的世界是多么孤单。</p>
+<p><strong>使用网络的目的：</strong><br>联通多方然后进行通信用的，即把数据从一方传递给另外一方。<strong>网络编程</strong>就是，让在不同的电脑上的软件能够数据传递，即<strong>进程之间的通信</strong>。</p>
+<h2 id="TCP-IP协议"><a href="#TCP-IP协议" class="headerlink" title="TCP/IP协议"></a>TCP/IP协议</h2><p><strong>如何实现网络通信？——协议</strong><br>有的说英语，有的说中文，有的说德语，说同一种语言的人可以交流，不同语言的人就不行了，为了解决不同种族人之间的语言沟通障碍，现规定国际通用语言是英语，这就是一个规定，这是协议。</p>
+<p><strong>网络通信协议是什么？</strong><br>问题：不同种类之间的计算机到底是怎么进行数据传递的呢？<br>答：就像说不同语言的人沟通一样，只要有一种大家都认可都遵守的协议即可，那么这个计算机都遵守的网络通信协议叫做TCP/IP协议。</p>
+<p><strong>TCP/IP协议(族)</strong><br>互联网协议包含了上百种协议标准，但是最重要的两个协议是TCP/IP协议，所以大家把互联网的协议简称为TCP/IP协议。<br><img src="https://img-blog.csdnimg.cn/20190724094616852.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>什么是IP地址</strong><br>ip地址：用来在网络中标记一台电脑的一串数字，比如192.168.1.1；在本地局域网上是唯一的。<br><img src="https://img-blog.csdnimg.cn/20190724094955452.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>私有IP</strong><br>网络IP中，国际规定有一部分IP地址是用于局域网使用，也就是属于私网IP，不再公网中使用的，他们的范围是：<br> 10.0.0.0～10.255.255.255<br>    172.16.0.0～172.31.255.255<br>    192.168.0.0～192.168.255.255</p>
+<p><strong>回环地址IP</strong><br>IP地址127.0.0.1代表本地IP地址，等价于localhost，用<a href="http://127.0.0.1就可以测试本集中配置的WEB服务器。" target="_blank" rel="noopener">http://127.0.0.1就可以测试本集中配置的WEB服务器。</a></p>
+<p><strong>子网掩码</strong><br>子网掩码不能呢个单独存在，它必须结合<strong>IP地址</strong>一起使用。</p>
+<p><strong>子网掩码的作用：</strong> 将某个IP地址分成网络地址和主机地址两部分，子网掩码的设定必须遵循一定的规则，用来判断两个IP是否在同一个网络。<br>A: 172.25.254.18/24<br>B: 172.25.0.10/24</p>
+<p><strong>端口</strong><br>1.端口就好像一个房子的门，是出入这间房子的必经之路。<br>2.端口号只有整数，范围是从0到65535<br>熟悉的服务及其对应的端口号：<br>http ： 80<br>mysql ； 3306<br>https ：443<br>ssh ：22<br>ldqp ： 289</p>
+<h2 id="socket编程"><a href="#socket编程" class="headerlink" title="socket编程"></a>socket编程</h2><p><strong>本地进程间通信（IPC）</strong><br>1.队列<br>2.同步<br>3.管道</p>
+<p><strong>网络进程间通信</strong><br>问题： 本地通过进程PID来唯一标示一个进程，在网络中如何唯一标示一个进程？<br>答：网络层“IP地址”可以唯一标示网络中的主机，而传输层的”协议+端口“可以唯一标示主机中的应用程序（进程）。因此利用<strong>IP地址，协议，端口</strong>就可以标示网络的进程。</p>
+<p><strong>什么是socket？</strong><br>答：socket（简称套接字）是进程间的一种通信方式，能实现不同主机间的进程间通信，我们网络上各种各样的服务大多都是基于Socket来完成通信的。</p>
+<p><strong>创建socket</strong><br>在 Python 中 使⽤socket 模块的函数 socket 就可以完成：     socket.socket(AddressFamily, Type)<br>    1). Address Family:<br>        AF_INET: IPV4⽤于 Internet 进程间通信<br>        AF_INET6: IPV6⽤于 Internet 进程间通信<br>    2). Type：套接字类型<br>        SOCK_STREAM: 流式套接字，主要⽤于 TCP 协议<br>        SOCK_DGRAM: 数据报套接字，主要⽤于 UDP 协 议</p>
+<h3 id="socket编程-UDP"><a href="#socket编程-UDP" class="headerlink" title="socket编程(UDP)"></a>socket编程(UDP)</h3><p><strong>UDP介绍</strong><br>1.UDP用户数据报协议，是一个无连接的简单的面向数据报的运输层协议。UDP不提供可靠性，它只是把应用程序传给IP层的数据报发送出去，但是并不能保证他们能到达目的地，由于UDP在传输数据报前不用在客户和服务器之间建立一个连接，且没有超时重法等机制，故而传输速度很快。<br>2.UDP是一种面向无连接的协议，每个数据报都是一个独立的信息，包括完整的源地址或目的地址，它在网络上以任何可能的路径传往目的地，因此能否到达目的地，到达目的地的时间以及内容的正确性都是不能被保证的。</p>
+<p><strong>UDP特点</strong><br>UDP是面向无连接的通讯协议，UDP数据包括目的端口号和源端口号信息，由于通讯不需要连接，所以可以实现广播发送。UDP传输数据时有大小限制，每个传输的数据报必须限定在64KB以内。UDP是一个不可靠的协议，发送方所发送的数据报并不一定以相同的次序到达接收方。<br><img src="https://img-blog.csdnimg.cn/20190724105514934.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>    <strong>服务端代码框架：</strong></p>
+<pre><code>import socket
+#1.实例化socket对象
+udpServer = socket.socket(family=socket.AF_INET,type=socket.SOCK_DGRAM)
+#2.绑定IP和端口
+#172.25.254.250
+#0.0.0.0代表开放所有的IP地址
+udpServer.bind((&apos;0.0.0.0&apos;,9001))
+print(&apos;等待客户端UDP的连接......&apos;)
+
+#3.接收客户端的连接
+recvdata,address = udpServer.recvfrom(1024)
+print(&apos;接收到客户端的数据：&apos;,recvdata.decode(&apos;utf-8&apos;))
+
+#4.给客户端回复信息
+udpServer.sendto(b&quot;hello client&quot;,address)
+#5.关闭socket对象
+udpServer.close()</code></pre><p><strong>客户端代码框架：</strong></p>
+<pre><code>import socket
+
+udpClient = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+udpClient.sendto(b&apos;hello server&apos;, (&apos;172.25.254.49&apos;, 9001))
+recvData, address = udpClient.recvfrom(1024)
+print(&apos;接收服务端的数据：&apos;, recvData.decode(&apos;utf-8&apos;))
+udpClient.close()</code></pre><p><strong>UDP网络程序框图</strong><br><img src="https://img-blog.csdnimg.cn/20190724111108568.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="socket编程-TCP"><a href="#socket编程-TCP" class="headerlink" title="socket编程(TCP)"></a>socket编程(TCP)</h3><p><strong>TCP详解：<br>TCP传输控制协议（英语：Transmission Control Protocol，缩写为TCP）是一种面向连接的、可靠的、基于字节流的传输层通信协议。</strong></p>
+<p>三次握手与四次挥手：<br><img src="https://img-blog.csdnimg.cn/20190724111418140.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如上图：存在两个包，同步序列号SYN 确认包ACK<br><strong>四种状态：</strong> SYN_SENT, LISTEN, SYN_RECV, ESTABLISHED<br>在三次握手中，客户端和服务器端都发送两个包SYN和ACK，只不过服务器端的两个包是一次性发过来的，客户端的两个包是分两次发送的。</p>
+<p><strong>TCP数据传输：</strong><br><img src="https://img-blog.csdnimg.cn/20190724112015525.jpg" alt="在这里插入图片描述"><br><strong>TCP四次挥手：</strong><br><img src="https://img-blog.csdnimg.cn/2019072411213786.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><strong>四次挥手</strong><br>当A端和B端要断开连接时，需要四次握手，这里称为四次挥手。</p>
+<p>断开连接请求可以由客户端发出，也可以由服务器端发出，在这里我们称A端向B端请求断开连接。</p>
+<p>第一次挥手</p>
+<p>A端向B端请求断开连接时会向B端发送一个带有FIN标记的报文段，这里的FIN是Finish的意思。</p>
+<p>第二次挥手</p>
+<p>B端收到A发送的FIN后，B段现在可能现在还有数据没有传完，所以B端并不会马上向A端发送FIN，而是先发送一个确认序号ACK，意思是说“你发的断开连接请求我收到了，但是我现在还有数据没有发完，请稍等一下呗”。</p>
+<p>第三次挥手</p>
+<p>当B端的事情忙完了，那么此时B端就可以断开连接了，此时B端向A端发送FIN序号，意思是这次可以断开连接了。</p>
+<p>第四次挥手</p>
+<p>A端收到B端发送的FIN后，会向B端发送确认ACK，然后经过两个MSL时长后断开连接。</p>
+<p>MSL是Maximum Segment Lifetime，最大报文段生存时间，2个MSL是报文段发送和接收的最长时间</p>
+<p><img src="https://img-blog.csdnimg.cn/20190724112544330.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>代码实现服务端框架：</p>
+<pre><code>import socket
+
+# 1.创建一个socket对象；
+# family指定使用IP协议的版本：IPV4：AF_INET; ipv6:AF_INET6
+# type指定传输层使用的协议类型：TCP（SOCKET.SOCK_STREAM）,UDP(SOCK_DGRAM)
+server = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM)
+# 2.绑定一个IP和端口，供客户端来连接；
+server.bind((&apos;172.25.254.250&apos;, 4002))
+# 3.监听是否有客户端连接
+server.listen(5)
+print(&apos;服务端正在启动......&apos;)
+# 4.接收客户端的连接，accept() -&gt; (socket object,address info)
+clientSocket, address = server.accept()
+print(&apos;客户端的地址：&apos;, address)
+# 5.接收客户端发送的信息
+recvData = clientSocket.recv(1024)
+print(&quot;服务端接收的信息：&quot;, recvData.decode(&apos;utf-8&apos;))
+# 6.给客户端回复消息，send（self,data:**bytes***,flags:int = .....）
+clientSocket.send(&apos;你好，客户端&apos;.encode(&apos;utf-8&apos;))
+# 7.关闭服务器端socket对象
+server.close()</code></pre><p>代码实现客户端框架：</p>
+<pre><code>import socket
+
+# 1.创建一个socket对象；
+# family指定使用IP协议的版本：IPV4：AF_INET; ipv6:AF_INET6
+# type指定传输层使用的协议类型：TCP（SOCKET.SOCK_STREAM）,UDP(SOCK_DGRAM)
+client = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM)
+# 2.连接服务器(ip,port)
+client.connect((&apos;172.25.254.250&apos;,4002))
+# 3.给服务端回复消息，send（self，data：***bytes***，flages：int=...）-&gt; int:...
+client.send(&apos;你好，服务器&apos;.encode(&apos;utf-8&apos;))
+
+# 4.接收服务端回复的消息
+recvData = client.recv(1024)
+print(&apos;客户端接收的信息：&apos;, recvData.decode(&apos;utf-8&apos;))
+
+# 5.关闭客户端socket对象
+client.close()</code></pre><p><strong>应用：模拟QQ聊天</strong><br>代码实现（服务端）：</p>
+<pre><code>import socket
+# 1.创建对象
+server = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM)
+# 2.创建地址和端口
+server.bind((&apos;172.25.254.49&apos;, 4002))
+# 3.监听
+server.listen(5)
+print(&apos;服务端正在启动.....&apos;)
+# 4.接收客户端的连接
+ServerSocket, address = server.accept()
+while True:
+    # 5.接收客户端发送的消息
+    recvData = ServerSocket.recv(1024)
+    recv = recvData.decode(&apos;utf-8&apos;)
+    print(&apos;服务端接收的信息：&apos;,recv )
+    if recv == &apos;bye&apos;:
+        break
+    # 6.给客户端发送消息
+    send_data = input(&quot;server:&gt;&gt;&quot;).encode(&apos;utf-8&apos;)
+    ServerSocket.send(send_data)
+
+# 7.关闭socket对象
+server.close()
+ServerSocket.close()</code></pre><p>客户端：</p>
+<pre><code>import socket
+
+# 1.创建一个socket对像；
+client = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM)
+# 2.连接服务端
+client.connect((&apos;172.25.254.49&apos;, 4022))
+# 3.给服务端发送信息
+while True:
+    send_data = input(&apos;client:&gt;&gt;&apos;).encode(&apos;utf-8&apos;)
+    client.send(send_data)
+
+    if send_data.decode(&apos;utf-8&apos;) == &apos;bye&apos;:
+        break
+# 5.关闭客户端socket对象
+client.close()</code></pre><h2 id="并发服务器"><a href="#并发服务器" class="headerlink" title="并发服务器"></a>并发服务器</h2><p>并发服务器是socket应用编程中最常见的应用模型。根据连接方式分为长连接和短连接.<br><strong>长连接</strong>:建立SOCKET连接后不管是否使用都保持连接。<br><strong>短连接</strong>：双方都有数据交互时，建立TCP连接，数据发送完成后断开连接。</p>
+<p><strong>并发服务器模型根据处理方式可分为同步方式和异步方式：</strong><br><img src="https://img-blog.csdnimg.cn/20190724120234663.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong>单进程服务器：</strong><br>同⼀时刻只能为⼀个客户进⾏服务，不能同时为多个客户服务<br>类似于找⼀个“明星”签字⼀样，客户需要耐⼼等待才可以获取到服务</p>
+<p><strong>多进程服务器：</strong><br>优点: 通过为每个客户端创建⼀个进程的⽅式，能够同时为多个客户端进⾏服务<br>缺点: 当客户端不是特别多的时候，这种⽅式还⾏，如果有⼏百上千个，就不 可取了，因为每次创建进程等过程需要好较⼤的资源<br><img src="https://img-blog.csdnimg.cn/20190724120151352.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20190724120207344.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>代码实现框架(服务端)：</p>
+<pre><code>import socket
+from multiprocessing import Process
+
+
+def dealWithClient(ServerSocket, clientAddress):
+    while True:
+        # 5.接收客户端发送的消息
+        recvData = ServerSocket.recv(1024)
+        recv = recvData.decode(&apos;utf-8&apos;)
+        print(clientAddress[0] + str(clientAddress[1]) + &apos;:&gt;&apos; + recv)
+        if recv == &apos;quit&apos;:
+            break
+    ServerSocket.close()
+
+
+# 1.创建对象
+server = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM)
+# 2.创建地址和端口
+server.bind((&apos;172.25.254.49&apos;, 4022))
+# 3.监听
+server.listen(5)
+print(&apos;服务端正在启动.....&apos;)
+# 4.接收客户端的连接
+
+while True:
+    ServerSocket, address = server.accept()
+    p = Process(target=dealWithClient, args=(ServerSocket, address))
+    p.start()</code></pre><p><strong>多线程服务器</strong><br><img src="https://img-blog.csdnimg.cn/20190724134528139.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong>gevent版-TCP服务器</strong><br><img src="https://img-blog.csdnimg.cn/2019072413461012.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190724134644809.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/24/网络编程-Python实现/" data-id="cjyh27hw30003u65e2qk902y4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-多任务编程" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/07/24/多任务编程/" class="article-date">
@@ -405,7 +605,7 @@ if __name__ == &apos;__main__&apos;:
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/24/多任务编程/" data-id="cjyh1yc6c0002n65ec32a7nc6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/24/多任务编程/" data-id="cjyh27hw00002u65e98ft22hj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -442,7 +642,7 @@ if __name__ == &apos;__main__&apos;:
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/24/aa/" data-id="cjyh1yc5z0000n65eybbldh7q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/24/aa/" data-id="cjyh27hvk0000u65epx2ha5de" class="article-share-link">Share</a>
       
       
     </footer>
@@ -491,7 +691,7 @@ if __name__ == &apos;__main__&apos;:
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/24/hello-world/" data-id="cjyh1yc680001n65ed433fk8t" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/24/hello-world/" data-id="cjyh27hvw0001u65esh57v1vz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -530,6 +730,10 @@ if __name__ == &apos;__main__&apos;:
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/07/24/网络编程-Python实现/">网络编程(Python实现)</a>
+          </li>
         
           <li>
             <a href="/2019/07/24/多任务编程/">多任务编程</a>
