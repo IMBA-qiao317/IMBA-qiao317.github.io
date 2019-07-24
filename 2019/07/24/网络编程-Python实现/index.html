@@ -7,12 +7,12 @@
   
   <title>网络编程(Python实现) | 钢棍乔师傅的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="@[toc] 网络通信概述什么是网络？网络就是一种辅助双法或者多方能连接在一起的工具。如果没有网络，可想单机的世界是多么孤单。 使用网络的目的：联通多方然后进行通信用的，即把数据从一方传递给另外一方。网络编程就是，让在不同的电脑上的软件能够数据传递，即进程之间的通信。 TCP/IP协议如何实现网络通信？——协议有的说英语，有的说中文，有的说德语，说同一种语言的人可以交流，不同语言的人就不行了，为了">
+  <meta name="description" content="[toc] 网络通信概述什么是网络？网络就是一种辅助双法或者多方能连接在一起的工具。如果没有网络，可想单机的世界是多么孤单。 使用网络的目的：联通多方然后进行通信用的，即把数据从一方传递给另外一方。网络编程就是，让在不同的电脑上的软件能够数据传递，即进程之间的通信。 TCP/IP协议如何实现网络通信？——协议有的说英语，有的说中文，有的说德语，说同一种语言的人可以交流，不同语言的人就不行了，为了">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网络编程(Python实现)">
 <meta property="og:url" content="http://yoursite.com/2019/07/24/网络编程-Python实现/index.html">
 <meta property="og:site_name" content="钢棍乔师傅的个人博客">
-<meta property="og:description" content="@[toc] 网络通信概述什么是网络？网络就是一种辅助双法或者多方能连接在一起的工具。如果没有网络，可想单机的世界是多么孤单。 使用网络的目的：联通多方然后进行通信用的，即把数据从一方传递给另外一方。网络编程就是，让在不同的电脑上的软件能够数据传递，即进程之间的通信。 TCP/IP协议如何实现网络通信？——协议有的说英语，有的说中文，有的说德语，说同一种语言的人可以交流，不同语言的人就不行了，为了">
+<meta property="og:description" content="[toc] 网络通信概述什么是网络？网络就是一种辅助双法或者多方能连接在一起的工具。如果没有网络，可想单机的世界是多么孤单。 使用网络的目的：联通多方然后进行通信用的，即把数据从一方传递给另外一方。网络编程就是，让在不同的电脑上的软件能够数据传递，即进程之间的通信。 TCP/IP协议如何实现网络通信？——协议有的说英语，有的说中文，有的说德语，说同一种语言的人可以交流，不同语言的人就不行了，为了">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190724094616852.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190724094955452.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
@@ -28,10 +28,10 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190724134528139.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/2019072413461012.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190724134644809.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-07-24T09:42:22.876Z">
+<meta property="og:updated_time" content="2019-07-24T09:48:18.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络编程(Python实现)">
-<meta name="twitter:description" content="@[toc] 网络通信概述什么是网络？网络就是一种辅助双法或者多方能连接在一起的工具。如果没有网络，可想单机的世界是多么孤单。 使用网络的目的：联通多方然后进行通信用的，即把数据从一方传递给另外一方。网络编程就是，让在不同的电脑上的软件能够数据传递，即进程之间的通信。 TCP/IP协议如何实现网络通信？——协议有的说英语，有的说中文，有的说德语，说同一种语言的人可以交流，不同语言的人就不行了，为了">
+<meta name="twitter:description" content="[toc] 网络通信概述什么是网络？网络就是一种辅助双法或者多方能连接在一起的工具。如果没有网络，可想单机的世界是多么孤单。 使用网络的目的：联通多方然后进行通信用的，即把数据从一方传递给另外一方。网络编程就是，让在不同的电脑上的软件能够数据传递，即进程之间的通信。 TCP/IP协议如何实现网络通信？——协议有的说英语，有的说中文，有的说德语，说同一种语言的人可以交流，不同语言的人就不行了，为了">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190724094616852.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
   
     <link rel="alternate" href="/atom.xml" title="钢棍乔师傅的个人博客" type="application/atom+xml">
@@ -105,7 +105,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>@[toc]</p>
+        <a id="more"></a>
+<p>[toc]</p>
 <h2 id="网络通信概述"><a href="#网络通信概述" class="headerlink" title="网络通信概述"></a>网络通信概述</h2><p><strong>什么是网络？</strong><br>网络就是一种辅助双法或者多方能连接在一起的工具。<br>如果没有网络，可想单机的世界是多么孤单。</p>
 <p><strong>使用网络的目的：</strong><br>联通多方然后进行通信用的，即把数据从一方传递给另外一方。<strong>网络编程</strong>就是，让在不同的电脑上的软件能够数据传递，即<strong>进程之间的通信</strong>。</p>
 <h2 id="TCP-IP协议"><a href="#TCP-IP协议" class="headerlink" title="TCP/IP协议"></a>TCP/IP协议</h2><p><strong>如何实现网络通信？——协议</strong><br>有的说英语，有的说中文，有的说德语，说同一种语言的人可以交流，不同语言的人就不行了，为了解决不同种族人之间的语言沟通障碍，现规定国际通用语言是英语，这就是一个规定，这是协议。</p>
@@ -273,7 +274,7 @@ while True:
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/24/网络编程-Python实现/" data-id="cjyh27hw30003u65e2qk902y4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/24/网络编程-Python实现/" data-id="cjyh2f9kx0003zl5emcf2l0a3" class="article-share-link">Share</a>
       
       
     </footer>

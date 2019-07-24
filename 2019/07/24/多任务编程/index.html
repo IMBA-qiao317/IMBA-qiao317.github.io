@@ -7,12 +7,12 @@
   
   <title>多任务编程 | 钢棍乔师傅的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="@[toc] 多任务编程现实生活中的多任务：有很多的场景中的事情是同时进行的，比如开车的时候，手和脚共同来驾驶汽车。再比如唱歌和跳舞也是同时进行的。 什么叫”多任务”？就是操作系统可以同时运行多个人物。打个比方，你一边在用浏览器上网，一边在听MP3，一边在用Word赶作业，这就是多任务，至少同时有三个任务正在进行。还有很多任务悄悄的正在后台同时运行着，只是桌面上没有现实而已。 单核CPU如何实现”">
+  <meta name="description" content="[toc] 多任务编程现实生活中的多任务：有很多的场景中的事情是同时进行的，比如开车的时候，手和脚共同来驾驶汽车。再比如唱歌和跳舞也是同时进行的。 什么叫”多任务”？就是操作系统可以同时运行多个人物。打个比方，你一边在用浏览器上网，一边在听MP3，一边在用Word赶作业，这就是多任务，至少同时有三个任务正在进行。还有很多任务悄悄的正在后台同时运行着，只是桌面上没有现实而已。 单核CPU如何实现”">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多任务编程">
 <meta property="og:url" content="http://yoursite.com/2019/07/24/多任务编程/index.html">
 <meta property="og:site_name" content="钢棍乔师傅的个人博客">
-<meta property="og:description" content="@[toc] 多任务编程现实生活中的多任务：有很多的场景中的事情是同时进行的，比如开车的时候，手和脚共同来驾驶汽车。再比如唱歌和跳舞也是同时进行的。 什么叫”多任务”？就是操作系统可以同时运行多个人物。打个比方，你一边在用浏览器上网，一边在听MP3，一边在用Word赶作业，这就是多任务，至少同时有三个任务正在进行。还有很多任务悄悄的正在后台同时运行着，只是桌面上没有现实而已。 单核CPU如何实现”">
+<meta property="og:description" content="[toc] 多任务编程现实生活中的多任务：有很多的场景中的事情是同时进行的，比如开车的时候，手和脚共同来驾驶汽车。再比如唱歌和跳舞也是同时进行的。 什么叫”多任务”？就是操作系统可以同时运行多个人物。打个比方，你一边在用浏览器上网，一边在听MP3，一边在用Word赶作业，这就是多任务，至少同时有三个任务正在进行。还有很多任务悄悄的正在后台同时运行着，只是桌面上没有现实而已。 单核CPU如何实现”">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190722101341379.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190722105118297.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
@@ -36,10 +36,10 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190722154819919.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190722155133261.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190722155226232.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-07-24T09:34:13.485Z">
+<meta property="og:updated_time" content="2019-07-24T09:48:10.778Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多任务编程">
-<meta name="twitter:description" content="@[toc] 多任务编程现实生活中的多任务：有很多的场景中的事情是同时进行的，比如开车的时候，手和脚共同来驾驶汽车。再比如唱歌和跳舞也是同时进行的。 什么叫”多任务”？就是操作系统可以同时运行多个人物。打个比方，你一边在用浏览器上网，一边在听MP3，一边在用Word赶作业，这就是多任务，至少同时有三个任务正在进行。还有很多任务悄悄的正在后台同时运行着，只是桌面上没有现实而已。 单核CPU如何实现”">
+<meta name="twitter:description" content="[toc] 多任务编程现实生活中的多任务：有很多的场景中的事情是同时进行的，比如开车的时候，手和脚共同来驾驶汽车。再比如唱歌和跳舞也是同时进行的。 什么叫”多任务”？就是操作系统可以同时运行多个人物。打个比方，你一边在用浏览器上网，一边在听MP3，一边在用Word赶作业，这就是多任务，至少同时有三个任务正在进行。还有很多任务悄悄的正在后台同时运行着，只是桌面上没有现实而已。 单核CPU如何实现”">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190722101341379.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
   
     <link rel="alternate" href="/atom.xml" title="钢棍乔师傅的个人博客" type="application/atom+xml">
@@ -113,7 +113,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>@[toc]</p>
+        <a id="more"></a>
+<p>[toc]</p>
 <h2 id="多任务编程"><a href="#多任务编程" class="headerlink" title="多任务编程"></a>多任务编程</h2><p>现实生活中的多任务：<br>有很多的场景中的事情是同时进行的，比如开车的时候，手和脚共同来驾驶汽车。再比如唱歌和跳舞也是同时进行的。</p>
 <p><strong>什么叫”多任务”？</strong><br>就是操作系统可以同时运行多个人物。打个比方，你一边在用浏览器上网，一边在听MP3，一边在用Word赶作业，这就是多任务，至少同时有三个任务正在进行。还有很多任务悄悄的正在后台同时运行着，只是桌面上没有现实而已。</p>
 <p><strong>单核CPU如何实现”多任务”呢？</strong><br>操作系统轮流让各个任务交替执行，每个任务执行0.01秒，这样反复执行下去。表面上看，每个任务交替执行，但CPU的执行速度实在是太快了，感觉就像所有任务都在同时执行一样。<br><img src="https://img-blog.csdnimg.cn/20190722101341379.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>多核CPU如何实现”多任务”呢?</strong></p>
@@ -427,7 +428,7 @@ if __name__ == &apos;__main__&apos;:
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/24/多任务编程/" data-id="cjyh27hw00002u65e98ft22hj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/24/多任务编程/" data-id="cjyh2f9kt0002zl5e0wmyilkd" class="article-share-link">Share</a>
       
       
     </footer>
