@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Python垃圾回收机制 | 钢棍乔师傅的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="垃圾回收目录：1.对象池              2.垃圾回收：计数机制              3.垃圾回收：标记-清楚              4.垃圾回收：分代收集              5.gc模块  小整数对象池：  1）整数在程序中的使用非常广泛，Python为了优化速度，使用了小整数对象池，避免为整数频繁申请和销毁内存空间。  2)Python对小整数的定义是[-5，25">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python垃圾回收机制">
+<meta property="og:url" content="http://yoursite.com/2019/07/25/Python垃圾回收机制/index.html">
+<meta property="og:site_name" content="钢棍乔师傅的个人博客">
+<meta property="og:description" content="垃圾回收目录：1.对象池              2.垃圾回收：计数机制              3.垃圾回收：标记-清楚              4.垃圾回收：分代收集              5.gc模块  小整数对象池：  1）整数在程序中的使用非常广泛，Python为了优化速度，使用了小整数对象池，避免为整数频繁申请和销毁内存空间。  2)Python对小整数的定义是[-5，25">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190610195447344.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190610201034626.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019061020142953.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190610201603486.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190610201845251.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-07-25T05:38:18.452Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python垃圾回收机制">
+<meta name="twitter:description" content="垃圾回收目录：1.对象池              2.垃圾回收：计数机制              3.垃圾回收：标记-清楚              4.垃圾回收：分代收集              5.gc模块  小整数对象池：  1）整数在程序中的使用非常广泛，Python为了优化速度，使用了小整数对象池，避免为整数频繁申请和销毁内存空间。  2)Python对小整数的定义是[-5，25">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190610195447344.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="钢棍乔师傅的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">钢棍乔师傅的个人博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Python开发与人工智能</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Python垃圾回收机制" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/25/Python垃圾回收机制/" class="article-date">
+  <time datetime="2019-07-25T05:37:43.000Z" itemprop="datePublished">2019-07-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python垃圾回收机制
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><p><strong>目录：1.对象池<br>              2.垃圾回收：计数机制<br>              3.垃圾回收：标记-清楚<br>              4.垃圾回收：分代收集<br>              5.gc模块</strong><br>  <strong>小整数对象池：<br>  1）整数在程序中的使用非常广泛，Python为了优化速度，使用了小整数对象池，避免为整数频繁申请和销毁内存空间。</strong><br>  <strong>2)Python对小整数的定义是[-5，257]这些整数对象是提前建立好的，不会被垃圾回收。在一个Python的程序中，所有位于这个范围内的整数使用的都是同一个对象。</strong></p>
+<p><strong>大整数对象池：<br>1）每一个大整数，均创建一个新的对象。</strong></p>
+<p><strong>itern机制</strong><br>       string interning(字符串驻留)：它通过维护一个字符串常量池（string intern pool），从而试图只保存为字符串对象，达到即高效又节省内存的处理字符串的目的。<br>       在创建一个新的字符串对象后，Python先比较常量池中是否有相同的对象（interned），有的话则将指针已有对象，并减少新对象的指针，新对象由于没有引用计数，就会被垃圾回收机制收掉，释放出内存。<br>       字符串（含有空格）不可修改，没开启inern机制，不共用对象，引用计数为0，销毁。<br>  <strong>垃圾回收机制—-内存溢出与内存泄漏</strong><br>      1.内存溢出 out of memory，是指程序在申请内存时，没有足够的内存空间供其使用，出现out of memory；比方说，定义了20个字节大小的内存空间，却写入了21个字<br>节的数据。通俗的说，就是内存不够，没办法支持当前程序。当发生内存溢出时，程<br>序将无法进行，强制终止。<br>      2.内存泄漏 memory leak，是指程序在申请内存后，无法释放已申请的内存空间，一次内存泄漏危害可以忽略，但内存泄漏堆积后果很严重，无论多少内存，迟早会被占光。如果发生内存泄漏，那么可用内存会逐渐减少，从而降低性能。<br>      <strong>memory.leak会最终会导致out of memory！</strong></p>
+<p><strong>为什么需要Garbage collection？</strong><br>      为了防止内存泄漏，对编程语言来说，GC就是一个无名英雄，默默地做着贡献。打个比方，天鹅在水面优雅地游动时，实际上脚蹼却在水下拼命的划水。GC也是如此。在由编程语言的美丽的源代码这片水下，GC在拼命地将垃圾回收再利用。</p>
+<p><strong>Python采用的时引用计数机制为主，标记-清除和分代收集两种机制为辅的策略</strong><br><strong>引用计数：</strong><br>     GC原本是一种“释放怎么都无法被引用的对象的机制”。那么人们自然而然地就会想到，可以让所有对象事先记录下“有多少程序引用自己”。让各对象知道自己的“人气指数”，从而让没有人气的对象自己消失，这就是引用计数法<br>     python里每一个东西都是对象，它们的核心就是结构体：PyObject</p>
+<p><img src="https://img-blog.csdnimg.cn/20190610195447344.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>当引用计数为0时，该对象生命就该结束了</p>
+<p><strong>导致引用计数+1的情况</strong><br>1)对象被创建，例如a=23<br>2)对象被引用，例如b=a<br>3)对象被作为参数，传入到一个函数中，例如func(a)<br>4)对象作为一个元素，存储在容器中，例如list1=[a,a]</p>
+<p><strong>导致引用计数-1的情况</strong><br>1)对象的别名被显式销毁，例如def a<br>2)对象的别名被赋予新的对象，例如a=24<br>3)一个对象离开它的作用域，例如f函数执行完毕时func函数中的局部变量（全局变量不会）<br>4）对象所在的日哦能勾起被销毁，或从容器中删除对象。</p>
+<p><strong>优点：1）简单 2）实时性：一旦没有引用，内存就直接释放了。不用像其他机制等到特定世纪。实时性还带来一个好处：处理回收内存的时间分摊到了平时 。</strong></p>
+<p><strong>缺点：1）维护引用计数消耗资源 2）循环引用</strong></p>
+<p><strong>循环引用：<img src="https://img-blog.csdnimg.cn/20190610201034626.png" alt="在这里插入图片描述"></strong><br>list1与list2相互引用,如果不存在其他对象对它们的引用,list1与list2的引用<br>计数也仍然为1,所占用的内存永远无法被回收,这将是致命的。 对于如今<br>的强大硬件,缺点1尚可接受,但是循环引用导致内存泄露,注定python还将<br>引入新的回收机制。(标记清除和分代收集)</p>
+<p><strong>标记清除：如它的字面意思一样,GC 标记 - 清除算法由标记阶段和清除阶段构成。标记阶段是把所有活动对象都做上标记的阶段。清除阶段是把那些没有标记的对象,也就是非活动对象回收的阶段。通过这两个阶段,就可以令不能利用的内存空间重新得到利用。</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/2019061020142953.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如果说被标记的对象是存活的,剩下的未被标记的对象只能是垃圾,这意味着我们的代码不再会使用它了。<br><img src="https://img-blog.csdnimg.cn/20190610201603486.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>清除这些无用的垃圾对象，把它们送回到可用列表</p>
+<p><strong>分代收集：分代垃圾回收在对象中导入了“年龄”的概念，通过优先回收容易成为垃圾的对象，提高垃圾回收的效率。</strong><br><img src="https://img-blog.csdnimg.cn/20190610201845251.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>什么是分代垃圾回收？</strong><br>新生代对象和老年代对象：<br>1）分代垃圾回收中把对象分类成几代，针对不同的代使用不同的GC算法，我们把刚生成的对象称为新生代对象，到达一定年龄的对象称为老年代对象。<br>2）新生代GC将存活了一定次数的新生代对象当作老年代对象来处理。我们把类似于这样的新生代对象上升为老年代对象的情况称为晋升。<br>3）老年代对象很难成为垃圾，所以我们对老年代对象减少执行GC的频率，从而提高效率。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/25/Python垃圾回收机制/" data-id="cjyiaa1k60000xz5e0osk4pwj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/07/25/Python异常处理/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Python异常处理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/07/25/Python基础——面向对象高级特性/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python基础——面向对象高级特性</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/25/Python函数/">Python函数</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python文件处理/">Python文件处理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python高级特性/">Python高级特性</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python异常处理/">Python异常处理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python垃圾回收机制/">Python垃圾回收机制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 赵子乔<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

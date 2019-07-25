@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Python异常处理 | 钢棍乔师傅的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="异常处理什么是异常？答：异常即是一个时间，该事件会在程序执行过程中发生，影响了程序的正常运行。当python脚本发生异常时我们需要捕获处理它，否则程序会终止运行。常见的异常：异常处理举例：try的工作原理：当开始一个try语句后，python就在当前程序的上下文中做标记，这样当一场出现的时候就可以回到这里，try子句先执行，接下来会发生什么依赖于执行时是否出现异常try语句测试实例：异常处理的一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python异常处理">
+<meta property="og:url" content="http://yoursite.com/2019/07/25/Python异常处理/index.html">
+<meta property="og:site_name" content="钢棍乔师傅的个人博客">
+<meta property="og:description" content="异常处理什么是异常？答：异常即是一个时间，该事件会在程序执行过程中发生，影响了程序的正常运行。当python脚本发生异常时我们需要捕获处理它，否则程序会终止运行。常见的异常：异常处理举例：try的工作原理：当开始一个try语句后，python就在当前程序的上下文中做标记，这样当一场出现的时候就可以回到这里，try子句先执行，接下来会发生什么依赖于执行时是否出现异常try语句测试实例：异常处理的一">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190610184118439.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190610184248461.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190610184521644.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190610184603933.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190610185541841.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190610185740412.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-07-25T05:39:35.680Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python异常处理">
+<meta name="twitter:description" content="异常处理什么是异常？答：异常即是一个时间，该事件会在程序执行过程中发生，影响了程序的正常运行。当python脚本发生异常时我们需要捕获处理它，否则程序会终止运行。常见的异常：异常处理举例：try的工作原理：当开始一个try语句后，python就在当前程序的上下文中做标记，这样当一场出现的时候就可以回到这里，try子句先执行，接下来会发生什么依赖于执行时是否出现异常try语句测试实例：异常处理的一">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190610184118439.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="钢棍乔师傅的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">钢棍乔师傅的个人博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Python开发与人工智能</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Python异常处理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/25/Python异常处理/" class="article-date">
+  <time datetime="2019-07-25T05:38:52.000Z" itemprop="datePublished">2019-07-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python异常处理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><p><strong>什么是异常？</strong><br><strong>答：异常即是一个时间，该事件会在程序执行过程中发生，影响了程序的正常运行。当python脚本发生异常时我们需要捕获处理它，否则程序会终止运行。</strong><br>常见的异常：<br><img src="https://img-blog.csdnimg.cn/20190610184118439.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>异常处理举例：</strong><br><img src="https://img-blog.csdnimg.cn/20190610184248461.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>try的工作原理：当开始一个try语句后，python就在当前程序的上下文中做标记，这样当一场出现的时候就可以回到这里，try子句先执行，接下来会发生什么依赖于执行时是否出现异常</strong><img src="https://img-blog.csdnimg.cn/20190610184521644.png" alt="在这里插入图片描述"><br>try语句测试实例：<img src="https://img-blog.csdnimg.cn/20190610184603933.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><strong>异常处理的一些其他用途：</strong><br>       除了处理实际的错误条件之外，对于异常还有许多其它的用处。在标准 Python 库中<br>一个普通的用法就是试着导入一个模块，然后检查是否它能使用。导入一个并不存在的<br>模块将引发一个 ImportError 异常。<br>      你可以使用这种方法来定义多级别的功能――依靠在运行时哪个模块是有效的，或支持多<br>种平台 (即平台特定代码被分离到不同的模块中)。</p>
+<p> <strong>触发异常</strong><br>    使用raise语句自己触发异常，raise语法格式如下：raise[Exception[,args [,traceback]]]<br>   语句中 Exception 是异常的类型（例如，NameError）参数标准异常中任一种，<br>args 是自已提供的异常参数。</p>
+<pre><code>用户自定义异常实例
+age=input(&quot;please input age:&quot;)
+if not 0&lt;age&lt;120:
+    raise AgeException(&quot;my excepition is raised &quot;)</code></pre><p><img src="https://img-blog.csdnimg.cn/20190610185541841.png" alt="在这里插入图片描述"><br><strong>触发异常框图</strong><br><img src="https://img-blog.csdnimg.cn/20190610185740412.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/25/Python异常处理/" data-id="cjyiaa1kj0003xz5e8e4youp3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/07/25/Python高级特性/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Python高级特性
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/07/25/Python垃圾回收机制/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python垃圾回收机制</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/25/Python函数/">Python函数</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python文件处理/">Python文件处理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python高级特性/">Python高级特性</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python异常处理/">Python异常处理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python垃圾回收机制/">Python垃圾回收机制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 赵子乔<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

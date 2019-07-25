@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>多进程编程习题(Python语言实现) | 钢棍乔师傅的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="~## IP 地址归属地批量查询任务注意: 使用创建子类的方式实现多线程任务 实现代码： import json import requests from threading import Thread   class GetHostAliveThread(Thread):     def __init__(self, ip):         super(GetHostAliveThread,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多进程编程习题(Python语言实现)">
+<meta property="og:url" content="http://yoursite.com/2019/07/25/多进程编程习题-Python语言实现/index.html">
+<meta property="og:site_name" content="钢棍乔师傅的个人博客">
+<meta property="og:description" content="~## IP 地址归属地批量查询任务注意: 使用创建子类的方式实现多线程任务 实现代码： import json import requests from threading import Thread   class GetHostAliveThread(Thread):     def __init__(self, ip):         super(GetHostAliveThread,">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-25T01:19:05.779Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="多进程编程习题(Python语言实现)">
+<meta name="twitter:description" content="~## IP 地址归属地批量查询任务注意: 使用创建子类的方式实现多线程任务 实现代码： import json import requests from threading import Thread   class GetHostAliveThread(Thread):     def __init__(self, ip):         super(GetHostAliveThread,">
+  
+    <link rel="alternate" href="/atom.xml" title="钢棍乔师傅的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">钢棍乔师傅的个人博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Python开发与人工智能</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-多进程编程习题-Python语言实现" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/25/多进程编程习题-Python语言实现/" class="article-date">
+  <time datetime="2019-07-25T01:18:07.000Z" itemprop="datePublished">2019-07-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      多进程编程习题(Python语言实现)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+<p>~## IP 地址归属地批量查询任务<br><strong>注意: 使用创建子类的方式实现多线程任务</strong></p>
+<p>实现代码：</p>
+<pre><code>import json
+import requests
+from threading import Thread
+
+
+class GetHostAliveThread(Thread):
+    def __init__(self, ip):
+        super(GetHostAliveThread, self).__init__()
+        self.ip = ip
+
+def run(self):
+    url = &apos;http://ip-api.com/json/%s&apos; % (ip)
+    count = requests.get(url).text
+    dict_data = json.loads(count)
+    city = dict_data.get(&apos;city&apos;)
+    country = dict_data.get(&apos;country&apos;)
+    print(&apos;%s的所在城市为%s&apos; % (self.ip, city))
+    print(&apos;%s的所在城市为%s&apos; % (self.ip, country))
+
+
+if __name__ == &apos;__main__&apos;:
+    for i in range(25):
+        ip = str(&apos;1.1.1.&apos;) + str(1 + i)
+        thread = GetHostAliveThread(ip)
+        thread.start()</code></pre><h2 id="基于多线程的批量主机存活探测"><a href="#基于多线程的批量主机存活探测" class="headerlink" title="基于多线程的批量主机存活探测"></a>基于多线程的批量主机存活探测</h2><p>项目描述: 如果要在本地网络中确定哪些地址处于活动状态或哪些计算机处于活动状态,<br>则可以使用此脚本。我们将依次 ping 地址, 每次都要等几秒钟才能返回值。这可以在 Python<br>中编程,在 IP 地址的地址范围内有一个 for 循环和一个 os.popen(“ping -q -c2”+ ip)。<br>项目瓶颈: 没有线程的解决方案效率非常低,因为脚本必须等待每次 ping。<br><strong>注意: 使用实例化对象的方式实现多线程任务</strong></p>
+<p>实现代码：</p>
+<pre><code>import json
+import requests
+from threading import Thread
+import pymysql
+conn = pymysql.connect(host=&apos;172.25.254.149&apos;, user=&apos;root&apos;, password=&apos;990038&apos;, db=&apos;mysql&apos;)#连接数据库
+cursor = conn.cursor()#设立邮标
+# create_sqli = &apos;create table IP(ipid varchar(20),ipcity varchar(20),ipcountry varchar(20));&apos;（如果没有表则进行建表）
+# cursor.execute(create_sqli)
+
+class GetHostAliveThread(Thread):
+    def __init__(self, ip):
+        super(GetHostAliveThread, self).__init__()
+        self.ip = ip
+
+def run(self):
+    url = &apos;http://ip-api.com/json/%s&apos; % (ip)
+    count = requests.get(url).text
+    dict_data = json.loads(count)
+    city = dict_data.get(&apos;city&apos;)
+    country = dict_data.get(&apos;country&apos;)
+    #print(&apos;%s的所在城市为%s&apos; % (self.ip, city))
+    #print(&apos;%s的所在城市为%s&apos; % (self.ip, country))
+    insert_sqli = &apos;insert into IP(ipid,ipcity,ipcountry) values(&quot;%s&quot;, &quot;%s&quot;, &quot;%s&quot;);&apos; % (ip, city, country)#将信息导入数据库
+    print(insert_sqli)
+    cursor.execute(insert_sqli)
+    conn.commit()#上传修改
+
+
+if __name__ == &apos;__main__&apos;:
+    for i in range(25):
+        ip = str(&apos;1.1.1.&apos;) + str(1 + i)
+        thread = GetHostAliveThread(ip)
+        thread.start()
+        cursor.close()
+        conn.close()</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/25/多进程编程习题-Python语言实现/" data-id="cjyiaa1lr0009xz5er4ljktl4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/07/25/算法习题/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          算法习题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/07/25/数据库对象映射SQLAachemy/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">数据库对象映射SQLAachemy</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/25/Python函数/">Python函数</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python文件处理/">Python文件处理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python高级特性/">Python高级特性</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python异常处理/">Python异常处理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python垃圾回收机制/">Python垃圾回收机制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 赵子乔<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

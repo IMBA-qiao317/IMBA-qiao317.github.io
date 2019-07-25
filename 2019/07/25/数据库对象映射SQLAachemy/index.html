@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>数据库对象映射SQLAachemy | 钢棍乔师傅的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="简介什么是ORM？ORM，即Object-Relation Mapping(对象关系映射)，它的作用是在关系型数据库和业务实体对象之间做一个映射，这样，我们在具体的操作业务对象的时候，就不需要再去和复杂的SQL语句打交道，只需要简单的操作对象的属性和方法。 什么是SQLAIchemy？SQLAIchemy是Python编程语言下的一款开源软件。提供了SQL工具包以及对象关系映射工具，为高校和高性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库对象映射SQLAachemy">
+<meta property="og:url" content="http://yoursite.com/2019/07/25/数据库对象映射SQLAachemy/index.html">
+<meta property="og:site_name" content="钢棍乔师傅的个人博客">
+<meta property="og:description" content="简介什么是ORM？ORM，即Object-Relation Mapping(对象关系映射)，它的作用是在关系型数据库和业务实体对象之间做一个映射，这样，我们在具体的操作业务对象的时候，就不需要再去和复杂的SQL语句打交道，只需要简单的操作对象的属性和方法。 什么是SQLAIchemy？SQLAIchemy是Python编程语言下的一款开源软件。提供了SQL工具包以及对象关系映射工具，为高校和高性">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190722092020536.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019072209270984.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-07-25T01:17:02.613Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库对象映射SQLAachemy">
+<meta name="twitter:description" content="简介什么是ORM？ORM，即Object-Relation Mapping(对象关系映射)，它的作用是在关系型数据库和业务实体对象之间做一个映射，这样，我们在具体的操作业务对象的时候，就不需要再去和复杂的SQL语句打交道，只需要简单的操作对象的属性和方法。 什么是SQLAIchemy？SQLAIchemy是Python编程语言下的一款开源软件。提供了SQL工具包以及对象关系映射工具，为高校和高性">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190722092020536.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="钢棍乔师傅的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">钢棍乔师傅的个人博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Python开发与人工智能</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-数据库对象映射SQLAachemy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/25/数据库对象映射SQLAachemy/" class="article-date">
+  <time datetime="2019-07-25T01:14:40.000Z" itemprop="datePublished">2019-07-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据库对象映射SQLAachemy
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>什么是ORM？</strong><br>ORM，即Object-Relation Mapping(对象关系映射)，它的作用是在关系型数据库和业务实体对象之间做一个映射，这样，我们在具体的操作业务对象的时候，就<strong>不需要再去和复杂的SQL语句打交道，</strong>只需要简单的操作对象的属性和方法。</p>
+<p><strong>什么是SQLAIchemy？</strong><br>SQLAIchemy是Python编程语言下的一款开源软件。提供了SQL工具包以及对象关系映射工具，为高校和高性能的数据库访问设计，实现了完整的企业级别持久模型。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190722092020536.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><p><strong>安装sqlalchemy步骤：</strong><br>1.需要一台安装MYSQL数据库的机器<br>2.安装模块：pip3 install sqlalchemy<br>3.查看版本信息</p>
+<p><strong>操作信息：</strong><br>在sqlalchemy中，session用于创建程序与数据库之间的会话。所有对象的载入和保存都需要通过session对象。</p>
+<p><img src="https://img-blog.csdnimg.cn/2019072209270984.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>一个映射对应着一个Python类，用来表示一个表的结构。</strong></p>
+<pre><code>#基于这个基类来创建我们的自定义类，一个类就是一个数据库表。
+class Person(Base):
+    __tablename__ = &apos;userinfo&apos;
+    id =     Column(Integer,primary_key=True)
+    name = Column(String(32))
+    email = Column(String(32),unique = True)
+
+    def __repr__(self):
+        return &quot;&lt;Person(name=&apos;%s&apos;)&gt;&quot; % self.name
+if __name__ == &apos;__main__&apos;:
+    #检查表的存在性，如果不存在的话会执行表的创建工作。
+    Base.metadata.create_all(engine)</code></pre><p><strong>添加单条数据</strong></p>
+<pre><code>#创建一个person对象
+person = Person（name=‘粉丝’）
+#设置邮箱地址
+person.email = &apos;westos.qq.com&apos;
+#添加person对象，但是仍然没有提交到数据库
+session.add(person)
+#提交数据库
+session.commit()</code></pre><p><strong>添加多条数据</strong></p>
+<pre><code>seeion.add_all([Person(name=&apos;小A&apos;,email=&apos;a@westos.org&apos;)
+                         Person(name=&apos;小B&apos;,email=&apos;b@westos.org&apos;)]    
+session.commit()</code></pre><p><strong>查找数据</strong><br>sqlalchemy模块中，朝朝数据给提供了query()的方法</p>
+<pre><code>#限制返回的数据：all-所有数据，first-第一条数据
+print(session.query(Person).all())
+print(session.query(Person).first())
+
+#筛选数据
+print(session.query(Person).filter_by(name=&apos;小A&apos;).all（）)
+print(session.query(Person).filter_by(name=&apos;小A&apos;.first())
+print(session.query(Person).filter_by(name=&apos;小A&apos;).one_or_none())</code></pre><p><strong>删除数据</strong></p>
+<pre><code>person = session.query(Person).filter_by(name=&quot;小A&quot;).first()
+session.delete(person)
+print(session.query(Person).all())</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/25/数据库对象映射SQLAachemy/" data-id="cjyiaa1m1000bxz5e03jaf2ck" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/07/25/多进程编程习题-Python语言实现/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          多进程编程习题(Python语言实现)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/07/25/网络编程作业题目/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">网络编程作业题目</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/25/Python函数/">Python函数</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python文件处理/">Python文件处理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python高级特性/">Python高级特性</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python异常处理/">Python异常处理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python垃圾回收机制/">Python垃圾回收机制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 赵子乔<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

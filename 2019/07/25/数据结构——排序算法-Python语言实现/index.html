@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>数据结构——排序算法(Python语言实现) | 钢棍乔师傅的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="排序算法1.排序的定义：假设含有n个记录的序列为{r1,r2,……,rn}，其相应的关键字分别为{k1,k2,……,kn}，需确定 1，2，……，n的一种排列p1,p2,……,pn，使其相应的关键字满足kp1≤kp2≤……≤kpn（非递减或非递增）关系，即使得序列成为一个按关键字有序的序列{rp1,rp2,……,rpn}，这样的操作就称为排序。 2.常用术语：稳定与不稳定稳定：如果a原本在b前面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构——排序算法(Python语言实现)">
+<meta property="og:url" content="http://yoursite.com/2019/07/25/数据结构——排序算法-Python语言实现/index.html">
+<meta property="og:site_name" content="钢棍乔师傅的个人博客">
+<meta property="og:description" content="排序算法1.排序的定义：假设含有n个记录的序列为{r1,r2,……,rn}，其相应的关键字分别为{k1,k2,……,kn}，需确定 1，2，……，n的一种排列p1,p2,……,pn，使其相应的关键字满足kp1≤kp2≤……≤kpn（非递减或非递增）关系，即使得序列成为一个按关键字有序的序列{rp1,rp2,……,rpn}，这样的操作就称为排序。 2.常用术语：稳定与不稳定稳定：如果a原本在b前面">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190718153534484.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190718153640658.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190718155117609.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190718155932945.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190718164242726.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190718165625651.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019071816583495.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190718165922558.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190718165932403.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190718173113567.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-07-25T01:23:46.244Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构——排序算法(Python语言实现)">
+<meta name="twitter:description" content="排序算法1.排序的定义：假设含有n个记录的序列为{r1,r2,……,rn}，其相应的关键字分别为{k1,k2,……,kn}，需确定 1，2，……，n的一种排列p1,p2,……,pn，使其相应的关键字满足kp1≤kp2≤……≤kpn（非递减或非递增）关系，即使得序列成为一个按关键字有序的序列{rp1,rp2,……,rpn}，这样的操作就称为排序。 2.常用术语：稳定与不稳定稳定：如果a原本在b前面">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190718153534484.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="钢棍乔师傅的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">钢棍乔师傅的个人博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Python开发与人工智能</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-数据结构——排序算法-Python语言实现" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/25/数据结构——排序算法-Python语言实现/" class="article-date">
+  <time datetime="2019-07-25T01:22:53.000Z" itemprop="datePublished">2019-07-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据结构——排序算法(Python语言实现)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+<h2 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h2><p>1.排序的定义：假设含有n个记录的序列为{r1,r2,……,rn}，其相应的关键字分别为{k1,k2,……,kn}，需确定 1，2，……，n的一种排列p1,p2,……,pn，使其相应的关键字满足kp1≤kp2≤……≤kpn（非递减或非递增）关系，即使得序列成为一个按关键字有序的序列{rp1,rp2,……,rpn}，这样的操作就称为排序。</p>
+<p>2.常用术语：稳定与不稳定<br>稳定：如果a原本在b前面，而a=b，排序之后a仍然在b的前面；<br>不稳定：如果a原本在b的前面，而a=b，排序之后a可能会出现在b的后面；</p>
+<p>3.常用术语：内排序与外排序<br>内排序：所有排序操作都在内存中完成；<br>外排序：由于数据太大，因此把数据放在磁盘中，而排序通过磁盘和内存的数据传输才能进行；</p>
+<p>4.排序算法的性能三大影响因素<br>(1) 时间性能(时间复杂度):  一个算法执行所耗费的时间。<br>(2)辅助空间 (空间复杂度)：运行完一个程序所需内存的大小。<br>(3) 算法的复杂性 : 算法本身的复杂度，而不是指算法的时间复杂度</p>
+<p>5.各种排序算法不同的时间复杂度<br><img src="https://img-blog.csdnimg.cn/20190718153534484.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>6.不同排序算法的内存占用情况<br><img src="https://img-blog.csdnimg.cn/20190718153640658.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="交换排序：冒泡排序"><a href="#交换排序：冒泡排序" class="headerlink" title="交换排序：冒泡排序"></a>交换排序：冒泡排序</h2><p>1.定义：冒泡排序（Bubble Sort）一种交换排序，它的基本思想是：两两比较相邻记录的关键字，如果反序则交换，直到没有反序的记录为止。这个算法的名字由来是因为越大的元素会经由交换慢慢“浮”到数列的顶端。</p>
+<p>2.冒泡排序算法的运作如下：<br>(1).比较相邻的元素。如果第一个比第二个大（升序），就交换他们两个。<br>(2).对每一对相邻元素作同样的工作，从开始第一对到结尾最后一对，这步做完后，最后的元素会是最大的数。<br>(3)针对所有的元素重复以上的步骤，除了最后一个。<br>(4)持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。<br><img src="https://img-blog.csdnimg.cn/20190718155117609.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>例：<br>原始数组：5 <em>2</em> 2 8 3<br>第一趟排序：<em>2</em> 2 5 3 8<br>第二趟排序：<em>2</em> 2 3 5 8<br>第三趟排序：<em>2</em> 2 3 5 8</p>
+<p>3.冒泡排序的特点：<br>    最好的情况，也就是要排序的表本身就是有序的，那么我们比较次数，可以推断出就是<br>n‐1 次的比较，没有数据交换，时间复杂度为O(n)。</p>
+<pre><code>最坏的情况，即待排序表是逆序的情况，此时需要比较1+2+3+4+......+(n-1)=n(n-1)/2次，</code></pre><p>即时间复杂度为O(n**2)。</p>
+<pre><code>稳定性: 稳定</code></pre><h2 id="交换排序：快速排序"><a href="#交换排序：快速排序" class="headerlink" title="交换排序：快速排序"></a>交换排序：快速排序</h2><p>1.快速排序的基本思想：通过一趟排序将待排记录分割成独立的两部分，其中一部分记录的关键字均比另一部分记录的关键字小，则课分别对这两部分记录继续进行排序，以达到整个序列有序的目的。<br><img src="https://img-blog.csdnimg.cn/20190718155932945.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>层数为O(logn)(即调用栈的高度为O(logn)),而每层需要的时间为O(n)。因此整个算法需要的时间为O(n) * O(logn) = O(nlogn)</p>
+<p>代码实现部分：</p>
+<pre><code>def quicksort(array):
+if len(array) &lt; 2:
+    return array #基线条件：为空或只包含一个元素的数组是有序的
+else:
+    pivot = array[0] #递归条件
+    less = [i for i in array[1:] if i &lt;= pivot] #由所有小于基准值的元素组成的子数组
+    greater = [i for i in array[1:] if i &gt; pivot] #由所有大与基准值的元素组成的子数组
+    return quicksort(less) + [pivot] + quicksort(greater)</code></pre><p>print(quicksort([28,2,1,27,15,9]))</p>
+<h2 id="插入排序：直接插入排序"><a href="#插入排序：直接插入排序" class="headerlink" title="插入排序：直接插入排序"></a>插入排序：直接插入排序</h2><p><strong>直接插入排序的基本操作是将一个记录插入到已经排好序的有序表中，从而得到一个新的，记录数增1的有序表。</strong></p>
+<p>插入排序示意图：<img src="https://img-blog.csdnimg.cn/20190718164242726.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>直接插入排序代码实现：</p>
+<pre><code>def insert_sort(nums):
+    count = len(nums)
+    for i in range(1, count):
+        key = nums[i]
+        j = i - 1
+        while j &gt;= 0:
+            if nums[j] &gt; key:
+                nums[j + 1] = nums[j]
+                nums[j] = key
+            j -= 1
+    return nums
+
+
+if __name__ == &apos;__main__&apos;:
+    nums = [3,2,7,5,1,9,6,8,0]
+    sort_nums = insert_sort(nums)
+    print(sort_nums)</code></pre><p>直接插入排序原理：每次将排序中的元素，插入到前面已经排好序的有序序列中去，直到排序完成。</p>
+<p>步骤：<br>第一步，a[0]为有序区，待排序区为a[1..n-1]。令i=1。<br>第二步，将a[1]与a[0]中元素比较，将小的元素放在第一个位置。<br>第三步，以此类推，直到待排序中全部元素插入完成为止。</p>
+<p>最好的情况,也就是要排序的表本身就是有序的, 因此没有移动的记录,时间复杂<br>度为 O(n)。 </p>
+<p>最坏的情况,即待排序表是逆序的情况,时间复杂度为 O(n**2)。 </p>
+<h2 id="直接插入排序：希尔排序"><a href="#直接插入排序：希尔排序" class="headerlink" title="直接插入排序：希尔排序"></a>直接插入排序：希尔排序</h2><p>希尔排序是D.L.Shell于 1959 年提出来的一种排序算法，在这之前排序算法的时间复杂度基本<br>都是O(n2)的，希尔排序算法是突破这个时间复杂度的第一批算法之一。</p>
+<p>希尔排序基本思想：<br>算法先将要排序的一组数按某个增量d（n/2,n为要排序数的个数）分成若干组，每组中记录的然后<br>再用一个较小的增量（d/2）对它进行分组，在每组中再进行直接插入排序。当增量减到1时，进行<br>直接插入排序后，排序完成。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190718165625651.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/2019071816583495.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190718165922558.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190718165932403.png" alt="在这里插入图片描述"></p>
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p>定义：选择排序(Selection sort)是一种简单直观的排序算法。它的工作原理如下。首先在未排序序列中找到最小(大)元素,存放到排序序列的起始位置,然后,再从剩余未排序元素中继续寻找最小(大)元素,然后放到已排序序列的末尾。以此类推,直到所有元素均排序完毕。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190718173113567.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/25/数据结构——排序算法-Python语言实现/" data-id="cjyiaa1n3000jxz5ejbp8c2fl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/07/25/数据结构中的顺序表和链表-Python语言实现/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          数据结构中的顺序表和链表(Python语言实现)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/07/25/贪心算法与动态规划-Python语言实现/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">贪心算法与动态规划(Python语言实现)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/25/Python函数/">Python函数</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python文件处理/">Python文件处理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python高级特性/">Python高级特性</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python异常处理/">Python异常处理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python垃圾回收机制/">Python垃圾回收机制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 赵子乔<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

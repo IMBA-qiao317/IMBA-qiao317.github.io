@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Python高级特性 | 钢棍乔师傅的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Python高级特性1.列表生成式列表生成式就是一个用来生成列表的特定语法形式的表达式。是Python提供的一种生成列表的简洁形式, 可快速生成一个新的list。普通的语法格式：[exp for iter_var in iterable]带过滤功能语法格式: [exp for iter_var in iterable if_exp]循环嵌套语法格式: [exp for iter_var_A in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python高级特性">
+<meta property="og:url" content="http://yoursite.com/2019/07/25/Python高级特性/index.html">
+<meta property="og:site_name" content="钢棍乔师傅的个人博客">
+<meta property="og:description" content="Python高级特性1.列表生成式列表生成式就是一个用来生成列表的特定语法形式的表达式。是Python提供的一种生成列表的简洁形式, 可快速生成一个新的list。普通的语法格式：[exp for iter_var in iterable]带过滤功能语法格式: [exp for iter_var in iterable if_exp]循环嵌套语法格式: [exp for iter_var_A in">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190604102807960.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190604113106297.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190604135527264.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190604140158293.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019060414422555.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190610175317202.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190610175559980.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190610182807524.png">
+<meta property="og:updated_time" content="2019-07-25T05:40:37.771Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python高级特性">
+<meta name="twitter:description" content="Python高级特性1.列表生成式列表生成式就是一个用来生成列表的特定语法形式的表达式。是Python提供的一种生成列表的简洁形式, 可快速生成一个新的list。普通的语法格式：[exp for iter_var in iterable]带过滤功能语法格式: [exp for iter_var in iterable if_exp]循环嵌套语法格式: [exp for iter_var_A in">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190604102807960.png">
+  
+    <link rel="alternate" href="/atom.xml" title="钢棍乔师傅的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">钢棍乔师傅的个人博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Python开发与人工智能</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Python高级特性" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/25/Python高级特性/" class="article-date">
+  <time datetime="2019-07-25T05:39:56.000Z" itemprop="datePublished">2019-07-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python高级特性
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+<h2 id="Python高级特性"><a href="#Python高级特性" class="headerlink" title="Python高级特性"></a>Python高级特性</h2><p><strong>1.列表生成式</strong><br>列表生成式就是一个用来生成列表的特定语法形式的表达式。<br>是Python提供的一种生成列表的简洁形式, 可快速生成一个新的list。<br>普通的语法格式：[exp for iter_var in iterable]<br>带过滤功能语法格式: [exp for iter_var in iterable if_exp]<br>循环嵌套语法格式: [exp for iter_var_A in iterable_A for iter_var_B in iterable_B]</p>
+<p><strong>2.列表生成式实例</strong><br>1). 求1-50所有数的平方<br>square = [(i + 1) ** 2 for i in range(50)]<br>print(square)<br>2). 生成一个2n+1的数字列表，n为从3到11的数字。<br>nums_list = [2 * n + 1 for n in range(3, 12)]<br>print(nums_list)<br>3).  求以r为半径的圆的面积和周长(r的范围从1到10)。<br>import math<br>circle = [(math.pi * (r ** 2), 2 * math.pi * r) for r in range(1, 11)]<br>print(circle)</p>
+<p><strong>3.集合生成式与字典生成式</strong><br>1）集合生成式：用来快速生成集合。<br>2）字典生成式：用来快速生成字典。<br><img src="https://img-blog.csdnimg.cn/20190604102807960.png" alt="在这里插入图片描述"></p>
+<h2 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h2><p><strong>生成器：Python中一边循环，一边计算的机制，被称为生成器。</strong></p>
+<p><strong>问：什么时候需要生成器？<br>答：一般情况下我们不需要使用生成器,只有当我们因为性能限制才需要用到,比如我们使用python读取一个10g的文件,如果一次性将10g的文件加载到内存处理的话(read方法),内存肯定会溢出;这里如果可以使用生成器把读写交叉处理进行,比如使用(readline和readlines)就可以再循环读取的同时不断处理,样就可以节省大量的内存空间。</strong></p>
+<p><strong>1）如何创建生成器？</strong><br>第一种：列表生成式的改写。（将生成式中的【】改为（））<br>第二种：yield关键字。<br><strong>2）如何打印生成器的每个元素呢？</strong><br>通过for循环， 依次计算并生成每一个元素。<br>如果要一个一个打印出来,可以通过next()函数获得生成器的下一个返回值。<br><strong>3）生成器的特点：</strong><br>1.节约内存。2.迭代到下一次的调用时,所使用的参数都是第一次所保留下的,即是说,在整个所有函数调用的参数都是第一次所调用时保留的,而不是新创建的。</p>
+<h2 id="生成器实例："><a href="#生成器实例：" class="headerlink" title="生成器实例："></a>生成器实例：</h2><p> <strong>1.斐波那契数列</strong>：<br>除第一个和第二个数外,任意一个数都可由前两个数相加得到.<br>1, 1, 2, 3, 5, 8, 13, 21, 34</p>
+<pre><code> def fib(n):
+# a代表第一个数， b代表第2个数， 也就是要显示的数; count: 当前已经显示fib数列的个数;当前为0;
+a, b, count = 0, 1, 0
+# 0&lt;5
+while count &lt; n:
+    # print(b)
+    yield  b
+    # a, b = b, a+b
+    a, b = b, a+b
+    # 已经显示的次数加1
+    count += 1
+# f是一个生成器(函数里面有yield)
+f = fib(5)
+while True:
+    try:
+        print(next(f))
+    except:
+        break</code></pre><p><strong>2.利用yield求平均值。</strong><br>     <img src="https://img-blog.csdnimg.cn/20190604113106297.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<pre><code>def averager():
+    # 所有数的和, 默认为0；
+    total = 0.0
+    # 数值的个数;
+    count = 0
+    # 平均值结果;
+    average = None
+    # 所有数值存储的容器(List);
+    all_items = []
+    while True:
+        # 函数包含yield关键字
+        new_item = yield average, all_items
+        all_items.append(int(new_item))
+        total += new_item
+        count += 1
+        average = total / count
+def main():
+    # AVERAGER是个生成器;
+    AVERAGER = averager()
+    # 第一次调用next方法， 遇到yield停止，
+    next(AVERAGER)
+    # 死循环， 依次求解平均值;
+    while True:
+        new_num = input(&quot;请输入求平均值的数: &quot;)
+        if new_num == &apos;q&apos;:
+            print(&quot;程序执行结束.....&quot;)
+            break
+        # 1). 通过send方法将求平均值的数值传到yield所在位置,(14行);
+        # 2). send方法的返回值是求平均值的列表和平均值结果;
+        average, all_items = AVERAGER.send(int(new_num))
+        print(all_items, &quot;的平均值为:&quot;, average)
+main()</code></pre><h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><p><strong>什么是迭代器？</strong><br><strong>迭代是访问容器元素的一种方式。迭代器是一个可以记住遍历的位置的对象。<br>迭代器对象从集合的第一个元素开始访问,直到所有的元素被访问完结束。</strong></p>
+<p><strong>可迭代对象：可以直接作用于for循环的对象(如何判断是否可以迭代?)<br>一类是集合数据类型,如list， tuple，dict， set，str等;<br>一类是generator,包括生成器和带yield的generator function。</strong></p>
+<p><strong>迭代器特点：<br>（1）可以被next()函数调用并不断返回下一个值的对象称为迭代器:Iterator。<br>（2）生成器都是Iterator对象,但list、dict、str虽然是Iterable,却不是Iterator。<br>（3)把list、dict、str等Iterable变成Iterator可以使用iter()函数。</strong></p>
+<p><strong>迭代器与生成器的区别：<img src="https://img-blog.csdnimg.cn/20190604135527264.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></strong></p>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p><strong>什么是闭包？</strong></p>
+<p>1）闭包的概念就是当我们在函数内定义一个函数时，这个内部函数使用了外部函数的临时 变量，且外部函数的返回值是内部函数的引用时，我们称之为闭包。</p>
+<p>2）闭包再理解 ：内部函数对外部函数作用域里变量的引用(非全局变量),则称内部函数为闭包。</p>
+<p>3）nonlocal关键字：显式的指定变量不是闭包的局部变量<br><strong>闭包的一个常用场景就是装饰器。</strong></p>
+<p>闭包的实际例子：<img src="https://img-blog.csdnimg.cn/20190604140158293.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>函数line与变量a,b构成闭包。在创建闭包的时候,我们通过line_conf的参数a,b说明了这两个变量的取值,这样,我们就确定了函数的最终形式(y=x+1和y=4x+5)。<br><strong>优点：闭包也具有提高代码可复用性的作用。</strong></p>
+<h2 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h2><p><strong>什么是装饰器？</strong><br>答：装饰器本质上是一个函数，该函数用来处理其他函数，它可以让其他函数在不需要修改代码的<br>前提下增加额外的功能，装饰器的返回值也是一个函数对象。它经常用于有切面需求的场景，<br>比如：插入日志、性能测试、事务处理、缓存、权限校验等应用场景。<br><strong>为什么需要装饰器？</strong><br>答：写代码要遵循 开放封闭 原则,虽然在这个原则是用的面向对象开发,但是也适用于函数式编程,简单来说,它规定已经实现的功能代码不允许被修改,但可以被扩展,即:<br><strong>1.封闭:已实现的功能代码块<br>2.开放:对扩展开发。</strong><br><strong>装饰器实例：动画片问题</strong><br><img src="https://img-blog.csdnimg.cn/2019060414422555.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>运行结果为：‘开始播放动画片《喜羊羊和灰太狼》‘</p>
+<p><strong>装饰器的功能：</strong></p>
+<ol>
+<li>引入日志</li>
+<li>函数执行时间统计</li>
+<li>执行函数前预备处理</li>
+<li>执行函数后清理功能</li>
+<li>权限校验等场景</li>
+<li>缓存</li>
+</ol>
+<p><strong>当有多个装饰器时：（以两个为例）</strong><br>运行有两个装饰器的程序时可以分为有两个步骤：<br>1.装饰函数阶段：装饰函数时，先用第二个装饰器，再用第一个。<br>2.调用函数阶段：调用函数阶段，先执行第一个装饰器，再执行第二个装饰器。</p>
+<p><strong>多个装饰器应用实例：学生管理系统，需要判断用户是否登陆账号，以及判断账号有无权限执行操作。</strong></p>
+<pre><code>    #1.判断用户是否登录
+    #2.判断用户是否有权限
+    #3.系统中的用户信息
+db = {
+    &apos;root&apos;: {&apos;name&apos;: &apos;root&apos;,
+             &apos;passwd&apos;: &apos;westos&apos;,
+             &apos;is_super&apos;: 0},
+    &apos;admin&apos;: {&apos;name&apos;: &apos;admin&apos;,
+              &apos;passwd&apos;: &apos;westos&apos;,
+              &apos;is_super&apos;: 1}
+}
+
+login_user_session = {}
+#存储当前登录用户信息
+def is_login(fun):
+    def wrapper1(*args, **kwargs):
+        if login_user_session:
+            result = fun(*args, **kwargs)
+            return result
+        else:
+            print(&quot;跳转登陆&quot;.center(50, &apos;*&apos;))
+            user = input(&apos;user:&apos;)
+            passwd = input(&apos;Passwd:&apos;)
+            if user in db:
+                if db[user][&apos;passwd&apos;] == passwd:
+                    login_user_session[&apos;username&apos;] = user
+                    print(&quot;登陆成功&quot;)
+                    result = fun(*args, **kwargs)
+                    return result
+                else:
+                    print(&quot;密码错误&quot;)
+            else:
+                print(&quot;该用户不存在&quot;)
+    return wrappe1
+     #判断是否有权限修改
+def is_permisson(fun):
+    def wrapper2(*args, **kwargs):
+        print(&quot;判断是否有权限......&quot;)
+        current_user = login_user_session.get(&apos;username&apos;)
+        permission = db[current_user][&apos;is_super&apos;]
+        if permission == 1:
+            result = fun(*args, **kwargs)
+            return result
+        else:
+            print(&quot;用户%s没有权限&quot; % (current_user))
+    return wrapper2
+@is_login
+@is_permisson
+def delete():
+    return &apos;正在删除用户信息&apos;
+result = delete()
+print(result)
+
+
+**** 被装饰的过程: 
+1). delete = is_permission(delete)   # delete = wrapper2
+2). delete = is_login(delete)        # delete = is_login(wrapper2)       # delete = wrapper1
+*******被调用的过程: 
+delete()    ------&gt;  wrapper1()   ---&gt; wrapper2()  ---&gt; delete()
+&quot;&quot;&quot;</code></pre><h2 id="练习部分"><a href="#练习部分" class="headerlink" title="练习部分"></a>练习部分</h2><p><strong>1.装饰器加日志并存入日志</strong></p>
+<pre><code>import datetime
+import os
+import json
+
+
+def rizhi(kan):
+      def zhuangshi(*args, **kwargs):
+          starttime = datetime.datetime.now()
+          hostname = os.getenv(&quot;computername&quot;)
+          file = open(&apos;rizhi.txt&apos;, &apos;a+&apos;)
+          json.dumps(str(starttime))
+          json.dumps(str(hostname))
+          file.write(str(starttime))
+          file.write(str(hostname))
+          file.close()
+          kan(*args, **kwargs)
+
+      return zhuangshi
+
+
+  @rizhi
+  def chakan():
+      result = &apos;you program is OK&apos;
+      print(&quot;运行完成，函数结果为：%s&quot; % result)
+      return result</code></pre><p><strong>2.斐波那契数列高速递归</strong></p>
+<pre><code>import time
+
+
+def num_catch(func):
+    list = []
+
+def wapper1(*args):
+    if func(*args) not in list:
+        list.append(func(*args))
+        return func(*args)
+    else:
+        return func(*args)
+return wapper1
+
+
+def timeit(func):
+    def wapper2(*args, **kwargs):
+        start = time.time()
+        time0 = func(*args, **kwargs)
+        end = time.time()
+        print(&quot;执行时间为：%s&quot; % (end - start))
+        return time0
+
+    return wapper2
+
+
+@num_catch
+@timeit
+def fibonacci(n):
+    if (int(n) &lt;= 2):
+        return 1
+    result = fibonacci(int(n) - 1) + fibonacci(int(n) - 2)
+    return result
+print(fibonacci(10))</code></pre><p><strong>3.求微信好友省份前五</strong></p>
+<pre><code>import itchat
+
+itchat.auto_login()
+friends = itchat.get_friends(update=True)
+prov_dict = {}
+for fri_info in friends[1:]:
+    prov = fri_info[&apos;Province&apos;]
+    if prov and prov not in prov_di**加粗样式**ct.keys():
+        prov_dict[prov] = 1
+    elif prov:
+        prov_dict[prov] += 1
+prov_dict_top10 = sorted(prov_dict.items(),key=lambda x:x[1],reverse=True)[0:10]
+print(prov_dict_top10)</code></pre><h2 id="模块与包"><a href="#模块与包" class="headerlink" title="模块与包"></a>模块与包</h2><p><strong>工具包的定义：模块就是工具包，想要使用这个工具包的工具就要导入这个模块</strong></p>
+<p>模块是非常简单的Python文件，一个python文件是一个python模块，两个python文件就是两个python模块。<br><strong>模块导图：<img src="https://img-blog.csdnimg.cn/20190610175317202.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></strong><br><img src="https://img-blog.csdnimg.cn/20190610175559980.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong>如何导入模块？</strong><br><strong>答：当解释器遇到import语句时，如果模块在当前的搜索路径就会被导入。</strong><br><strong>为什么一定要加上模块名导入呢？</strong><br><strong>答：因为可能存在这样一种情况:在多个模块中含有相同名称的函数,如果只是通过函数名来调用,解释器无法知道到底要调用哪个函数。所以如果像上述这样引入模块的时候,调用函数必须加上模块名。</strong><br><img src="https://img-blog.csdnimg.cn/20190610182807524.png" alt="在这里插入图片描述"><strong>如果只需要用到模块中的某个函数/变量/类，如何导入呢？</strong><br><strong>答：通过这种方式引入的时候,调用函数时只能给出函数名,不能给出模块名,但是当两个模块中含有相同名称函数的时候,后面一次引入会覆盖前一次引入。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/25/Python高级特性/" data-id="cjyiaa1kl0004xz5eer25h2pe" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/07/25/Python文件处理/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Python文件处理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/07/25/Python异常处理/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python异常处理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/25/Python函数/">Python函数</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python文件处理/">Python文件处理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python高级特性/">Python高级特性</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python异常处理/">Python异常处理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python垃圾回收机制/">Python垃圾回收机制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 赵子乔<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

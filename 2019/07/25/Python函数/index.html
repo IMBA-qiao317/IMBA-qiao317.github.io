@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Python函数 | 钢棍乔师傅的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="函数问题：我们为什么需要函数？答：如果在开发程序时，需要某块代码多次，但是为了提高编写的效率，以及代码的重用，所以把具有独立功能的代码块组成一个个小模块，这就是函数 1.函数范例函数的定义与调用：2.空函数定义一个什么也不用做的空函数，可以用pass语句；pass可以用作占位符，当你还没想好接下来的代码怎么写时，可以先用pass让你的代码运行起来。3.函数返回值所谓“返回值”，就是程序中，函数完">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python函数">
+<meta property="og:url" content="http://yoursite.com/2019/07/25/Python函数/index.html">
+<meta property="og:site_name" content="钢棍乔师傅的个人博客">
+<meta property="og:description" content="函数问题：我们为什么需要函数？答：如果在开发程序时，需要某块代码多次，但是为了提高编写的效率，以及代码的重用，所以把具有独立功能的代码块组成一个个小模块，这就是函数 1.函数范例函数的定义与调用：2.空函数定义一个什么也不用做的空函数，可以用pass语句；pass可以用作占位符，当你还没想好接下来的代码怎么写时，可以先用pass让你的代码运行起来。3.函数返回值所谓“返回值”，就是程序中，函数完">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190523215759958.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190523220147272.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190524164322683.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190524164344262.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190524164555268.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190524165818471.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190524171048244.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190524171301753.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190524172203654.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190524172458456.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190524172845591.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019052417362217.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190524174250248.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190524175000657.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190524180411420.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190524180611717.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190527094538353.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190527094914928.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190527100143576.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190527100709419.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190527100726558.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190527102626596.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190527104208727.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190527114759622.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190527114836656.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190527115917451.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528082417120.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528082502962.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528083152321.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528083200982.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528083211712.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528083224908.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528083241729.png">
+<meta property="og:updated_time" content="2019-07-25T06:15:59.502Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python函数">
+<meta name="twitter:description" content="函数问题：我们为什么需要函数？答：如果在开发程序时，需要某块代码多次，但是为了提高编写的效率，以及代码的重用，所以把具有独立功能的代码块组成一个个小模块，这就是函数 1.函数范例函数的定义与调用：2.空函数定义一个什么也不用做的空函数，可以用pass语句；pass可以用作占位符，当你还没想好接下来的代码怎么写时，可以先用pass让你的代码运行起来。3.函数返回值所谓“返回值”，就是程序中，函数完">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190523215759958.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="钢棍乔师傅的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">钢棍乔师傅的个人博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Python开发与人工智能</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Python函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/25/Python函数/" class="article-date">
+  <time datetime="2019-07-25T05:44:56.000Z" itemprop="datePublished">2019-07-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python函数
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p><strong>问题：我们为什么需要函数？</strong><br><strong>答：如果在开发程序时，需要某块代码多次，但是为了提高编写的效率，以及代码的重用，所以把具有独立功能的代码块组成一个个小模块，这就是函数</strong></p>
+<p><strong>1.函数范例</strong><br>函数的定义与调用：<br><img src="https://img-blog.csdnimg.cn/20190523215759958.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>2.空函数</strong><br>定义一个什么也不用做的空函数，可以用pass语句；pass可以用作占位符，当你还没想好接下来的代码怎么写时，可以先用pass让你的代码运行起来。<br><img src="https://img-blog.csdnimg.cn/20190523220147272.png" alt="在这里插入图片描述"><br><strong>3.函数返回值</strong><br>所谓“返回值”，就是程序中，函数完成一件事后函数得出的算式并且返回给调用者的结果，没有返回值，则默认为None。</p>
+<h2 id="实例演示：函数的创建与调用——猜数字游戏"><a href="#实例演示：函数的创建与调用——猜数字游戏" class="headerlink" title="实例演示：函数的创建与调用——猜数字游戏"></a><strong>实例演示：函数的创建与调用——猜数字游戏</strong></h2><p><strong>输入第一行中给出两个不超过100的正整数，分别是系统产生的随机数、以及猜测的最大次数N。随后每行给出一个用户，直到出现负数为止。</strong><br><img src="https://img-blog.csdnimg.cn/20190524164322683.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20190524164344262.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong>4.函数的应用：打印图像以及数学运算</strong><br><img src="https://img-blog.csdnimg.cn/20190524164555268.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">函数的图像表示结果：<br><img src="https://img-blog.csdnimg.cn/20190524165818471.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190524171048244.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>数学运算部分：<br><img src="https://img-blog.csdnimg.cn/20190524171301753.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>运行结果：<img src="https://img-blog.csdnimg.cn/20190524172203654.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>6.函数的优势</strong><br>从理论上说，不用函数，也能够编程，我们在前面已经写了程序，就没有写函数，当然，用python的内建函数姑且不算了。现在之所以使用函数，主要是：</p>
+<ol>
+<li>降低编程的难度(分而治之的思想)</li>
+<li>代码重用。避免了重复劳动，提供了工作效率。</li>
+</ol>
+<p><strong>7.函数的各种变量</strong><br>1）局部变量</p>
+<p><img src="https://img-blog.csdnimg.cn/20190524172458456.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>1.局部变量,就是在函数内部定义的变量。<br><strong>2.不同的函数,可以定义相同的名字的局部变量,但是各用个的不会产生影响。</strong><br>3.局部变量的作用,为了临时保存数据需要在函数中定义变量来进行存储,这就是它的作用。</p>
+<p>2）全局变量<br><img src="https://img-blog.csdnimg.cn/20190524172845591.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>如果一个变量,既能在一个函数中使用,也能在其他的函数中使用,这样的变量就是全局变量。</strong><br>全局变量能够在所有的函数中进行访问<br><strong>如果在函数中修改全局变量,那么就需要使用global进行声明,否则出错</strong><br>如果全局变量的名字和局部变量的名字相同,那么使用的是<strong>局部变量</strong>的</p>
+<p><strong>问：不使用global声明全局变量时不能修改全局变量?</strong><br><strong>答：global的本质是声明可以修改全局变量的指向， 即变量可以指向新的数据。<br>1). 不可变类型的全局变量: 指向的数据不能修改, 不使用global时无法修改全局变量。<br>2). 可变类型的全局变量: 指向的数据可以修改, 不使用global时可以修改全局变量。</strong></p>
+<p><strong>8.函数中的各种参数</strong><br>1）形参与实参：<br><img src="https://img-blog.csdnimg.cn/2019052417362217.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>定义时小括号中的参数,用来接收参数用的,称为 “形参”<br>调用时小括号中的参数,用来传递给函数用的,称为 “实参“</p>
+<p>2）默认参数<br>需求: 定义一函数，计算x值的n次方。那如果计算x平方时只需要传入x值时怎么解决?<br><strong>默认参数可以降低调用函数的难度。</strong><br>默认参数注意事项：<br>有多个参数时,变化大放前面,变化小的放后面；<br>必选参数在前,默认参数在后。<br><img src="https://img-blog.csdnimg.cn/20190524174250248.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>3）可变参数<br>可变参数就是传入的参数个数是可变的,可以是 1 个、2 个到任意个,还可以是 0 个。<br><img src="https://img-blog.csdnimg.cn/20190524175000657.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>如果已经有一个 list 或者 tuple,要调用一个可变参数怎么办?<br> Python 允许你在 list 或 tuple 前面加一个 * 号<br> 把 list 或 tuple 的元素变成可变参数传进去：</p>
+<pre><code>largs = [1,2,3]
+func(largs[0],largs[1],largs[2])
+func(*largs)</code></pre><p> 4）关键字参数</p>
+<p>关键字参数允许传入 0 个或任意个含参数名的参数;<br>这些关键字参数在函数内部自动组装为一个 dict;<br>关键字参数用**kwargs;<br><img src="https://img-blog.csdnimg.cn/20190524180411420.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">5）参数组合<br>参数组合是指可以必选参数、 默认参数、 可变参数和关键字参数一起使用。<br>参数定义的顺序必须是:必选参数、 默认参数、可变参数和关键字参数。</p>
+<p><strong>参数总结</strong><br><img src="https://img-blog.csdnimg.cn/20190524180611717.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="5-25-匿名函数"><a href="#5-25-匿名函数" class="headerlink" title="5.25 匿名函数"></a>5.25 匿名函数</h2><p><strong>1) 定义：</strong><br> 匿名函数指一类无需定义标识符的函数与子程序，Python用lambda语法定义匿名函数，只需要用表达式无需声明。（省略了用def声明函数的标准步骤。期间两个变量用冒号分隔。）<br> <img src="https://img-blog.csdnimg.cn/20190527094538353.png" alt="在这里插入图片描述"><br> 以上图片显示出的结果分别为：<br> 30，40</p>
+<p><strong>lambda函数的语法只包含一个语句，如下：<img src="https://img-blog.csdnimg.cn/20190527094914928.png" alt="在这里插入图片描述"><br>lambda函数能接收任何数量的参数，但只能返回一个表达式的值。</strong></p>
+<p><strong>2）应用实例：函数作为参数传递</strong><br><img src="https://img-blog.csdnimg.cn/20190527100143576.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><strong>应用实例：作为内置函数的参数</strong></p>
+<p> <img src="https://img-blog.csdnimg.cn/20190527100709419.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br> <img src="https://img-blog.csdnimg.cn/20190527100726558.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="小练习"><a href="#小练习" class="headerlink" title="小练习"></a>小练习</h1><p><strong>问题描述1： 有一个整数列表(若干个元素)， 要求调整元素顺序，把所有的奇数放在前面，偶数放在后面。</strong><br><img src="https://img-blog.csdnimg.cn/20190527102626596.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>**问题描述2：给定一个整形数组， 将数组中所有的0移动到末尾， 非0项保持不变；<br>在原始数组上进行移动操作， 勿创建新的数组;</p>
+<p>#输入: 数组的记录;0 7 0 2</p>
+<p>#输出: 调整后数组的内容; 7 2 0 0**<br><img src="https://img-blog.csdnimg.cn/20190527104208727.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="递归函数"><a href="#递归函数" class="headerlink" title="递归函数"></a>递归函数</h2><p><strong>1.定义：</strong><br><strong>已知: 函数可以调用函数。结论: 一个函数在内部调用自己本身,这个函数就是递归数。<br>需求:<br>计算阶乘 factorial：  n! = 1 * 2 * 3 * … * n</strong></p>
+<p><strong>什么是递归函数？</strong><br>1）阶乘的规律：<img src="https://img-blog.csdnimg.cn/20190527114759622.png" alt="在这里插入图片描述"><br>2）代码实现：<br><img src="https://img-blog.csdnimg.cn/20190527114836656.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>练习：<img src="https://img-blog.csdnimg.cn/20190527115917451.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><strong>递归函数思路：</strong><img src="https://img-blog.csdnimg.cn/20190528082417120.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>递归函数模型：汉诺塔问题</strong><br><img src="https://img-blog.csdnimg.cn/20190528082502962.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>n代表汉诺塔盘子的个数：<br>n=1，sum=1<em>（2*<em>1-1）<br>n=2，sum=3</em>（2</em> *2-1)<br>.<br>.<br>.</p>
+<p>n=n，sum=2<em>n-1(2</em>n-1）</p>
+<p><strong>解决方法图解：</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20190528083152321.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190528083200982.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190528083211712.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190528083224908.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190528083241729.png" alt="在这里插入图片描述"></p>
+<h2 id="练习部分："><a href="#练习部分：" class="headerlink" title="练习部分："></a>练习部分：</h2><p><strong>1.编程实现 9*9乘法表(循环嵌套的复习)</strong></p>
+<pre><code>a = 1
+b = 1
+print(&apos;%d* %d = %d\t&apos; % (a , b,a*b))
+for item in range(8):
+a += 1
+print(&apos;%d* %d = %d\t&apos; % (a, b, a * b))
+b += 1
+print(&apos;%d* %d = %d\t&apos; % (a, b, a * b))</code></pre><p><strong>2. 用函数实现求100-200里面所有的素数。<br> 提示:素数的特征是除了1和其本身能被整除,其它数都不能被整除的数</strong></p>
+<pre><code>def qiusushu():
+list = []
+for a in range(100, 200):
+    for i in range(2, int(a-1)):
+        list.append(int(a % i))
+    if list.count(0) != 0:
+        del list[:]
+    else:
+        print(a)
+qiusushu()</code></pre><p><strong>3.用函数实现输入某年某月某日,判断这一天是这一年的第几天?闰年情况也考虑进去。</strong></p>
+<pre><code>def runnian():
+x = input(&quot;请输入的年份：&quot;)
+y = input(&quot;请输入的月份：&quot;)
+z = input(&quot;请输入的日期：&quot;)
+li = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+if ((int(x) % 4 == 0) and (int(x) % 100 != 0)) or (int(x) % 400 == 0):
+    days = 0
+    for i in range(1, int(y)):
+        days += li[i]
+    if int(y) &gt;= 3:
+        result = days + int(z) + 1
+    else:
+        result = days + int(z)
+    print(result)
+else:
+    days = 0
+    for i in range(1, int(y)):
+        days += li[i]
+    result = days + int(z)
+    print(result)
+runnian()</code></pre><p><strong>4.题目需求:对于一个十进制的正整数， 定义f(n)为其各位数字的平方和，如:<br>    f(13) = 1 ** 2 + 3 ** 2 = 10<br>    f(207) = 2 ** 2 + 0 ** 2 + 7 ** 2 = 53</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/25/Python函数/" data-id="cjyiaa1kd0001xz5ecv9v1lfg" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/25/Python文件处理/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python文件处理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/25/Python函数/">Python函数</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python文件处理/">Python文件处理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python高级特性/">Python高级特性</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python异常处理/">Python异常处理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python垃圾回收机制/">Python垃圾回收机制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 赵子乔<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

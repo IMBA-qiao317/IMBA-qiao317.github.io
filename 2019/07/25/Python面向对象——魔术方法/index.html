@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Python面向对象——魔术方法 | 钢棍乔师傅的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="特殊属性魔术方法名称：name                          查看类、函数、方法等的名字                            module                      类定义所在的模块                            class                对象或类所属的类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python面向对象——魔术方法">
+<meta property="og:url" content="http://yoursite.com/2019/07/25/Python面向对象——魔术方法/index.html">
+<meta property="og:site_name" content="钢棍乔师傅的个人博客">
+<meta property="og:description" content="特殊属性魔术方法名称：name                          查看类、函数、方法等的名字                            module                      类定义所在的模块                            class                对象或类所属的类">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190625173017202.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190625173048495.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190625173114407.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190625173209719.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190625173351786.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190625173418875.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190625173429624.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190625173458959.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-07-25T01:41:57.012Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python面向对象——魔术方法">
+<meta name="twitter:description" content="特殊属性魔术方法名称：name                          查看类、函数、方法等的名字                            module                      类定义所在的模块                            class                对象或类所属的类">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190625173017202.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="钢棍乔师傅的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">钢棍乔师傅的个人博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Python开发与人工智能</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Python面向对象——魔术方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/25/Python面向对象——魔术方法/" class="article-date">
+  <time datetime="2019-07-25T01:41:31.000Z" itemprop="datePublished">2019-07-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python面向对象——魔术方法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+<h2 id="特殊属性"><a href="#特殊属性" class="headerlink" title="特殊属性"></a>特殊属性</h2><p><strong>魔术方法名称</strong>：<strong>name</strong>                          查看类、函数、方法等的名字<br>                            <strong>module</strong>                      类定义所在的模块<br>                            <strong>class</strong>                对象或类所属的类<br>                            <strong>bases</strong>                当前类的基类（父类）<br>                            <strong>doc</strong>                类、函数的文档帮助、没有定义为None<br>                            <strong>mro</strong>                Method Resolution Order方法解析顺序<br>                            <strong>dict</strong>                 类或实例的属性，可写的字典</p>
+<p><strong>查看属性：</strong><br><strong>dir</strong> 返回类或者对象的左右成员名称列表，dir()函数就是调用<strong>dir</strong>(）。</p>
+<p>1)如果dir([obj])参数包含方法<strong>dir</strong>()，该方法将被调用<br>2)如果Obj不包含<strong>dir</strong>(),该方法将最大限度收集属性信息。</p>
+<p><strong>dir</strong>(obj)对于不同类型的对象obj具有不同的行为：<br>1.如果对象是模块对象，返回的列表包含模块的属性名和变量名<br>2.如果对象是类型或者类对象，返回的列表包含类的属性名，及它的基类的属性名<br>3.如果obj不写 即dir()，返回列表包含内容不同</p>
+<p>_在模块中，返回模块的属性和变量名。<br>_在函数中，返回本地作用域的变量名。<br>_在方法中，返回本地作用域的变量名。</p>
+<h2 id="创建，初始化与销毁"><a href="#创建，初始化与销毁" class="headerlink" title="创建，初始化与销毁"></a>创建，初始化与销毁</h2><p><strong>面试常问</strong>：python中<strong>new</strong>，<strong>init</strong>,<strong>del</strong>的区别？<br>1).new的功能是在生成对象之前所作的操作，接受的参数是cls类，负责对象的创建工作。<br>2).init是在对象生成之后，对他的属性进行丰富，完善，他所接受的是self对象，负责对象的初始化操作。<br>3).对象生成是在new里面return（返回一个对象）</p>
+<h2 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h2><p>类型判断要使用type或者isinstance,不能通过判断print输出是否带引号来判断输出值的类型。<br>1).str()与repr()都是python中的内置函数，是直接用来格式化字符串的函数。<br>2).而<strong>str</strong>与<strong>repr</strong>是在类(对象)中对类(对象)本身进行字符串处理。</p>
+<p>str：返回一个可以用来表示对象的可打印的友好字符串。<br>    -对字符串，返回本身<br>    -没有参数，则返回空字符串<br>    -对类<strong>str()</strong>成员控制其行为。该成员不存在，则使用其<strong>repr</strong>()成员。</p>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><p><strong>init</strong>(self)                                                        转换成整形<br><strong>long</strong>(self)                                                      转换成长整型<br><strong>float</strong>(self)                                                      转换成浮点型<br><strong>complex</strong>(self)                            转换成复数型<br><strong>oct</strong>(self)                                  转换成八进制<br><strong>hex</strong>(self)                                  转换成十六进制<br><strong>index</strong>(self)    如果你定义了一个可能被用来做切片的数值类型，就用index定义</p>
+<h2 id="索引与切片"><a href="#索引与切片" class="headerlink" title="索引与切片"></a>索引与切片</h2><p><img src="https://img-blog.csdnimg.cn/20190625173017202.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190625173048495.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190625173114407.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="重复，连接与成员操作符"><a href="#重复，连接与成员操作符" class="headerlink" title="重复，连接与成员操作符"></a>重复，连接与成员操作符</h2><p><img src="https://img-blog.csdnimg.cn/20190625173209719.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190625173351786.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><p><img src="https://img-blog.csdnimg.cn/20190625173418875.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190625173429624.png" alt="在这里插入图片描述"></p>
+<h2 id="with语句安全上下文"><a href="#with语句安全上下文" class="headerlink" title="with语句安全上下文"></a>with语句安全上下文<img src="https://img-blog.csdnimg.cn/20190625173458959.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/25/Python面向对象——魔术方法/" data-id="cjyiaa1ku0008xz5ermzwjlcu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/07/25/Python基础——面向对象高级特性/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Python基础——面向对象高级特性
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/07/25/学生管理系统-Python面向对象版本/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/25/Python函数/">Python函数</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python文件处理/">Python文件处理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python高级特性/">Python高级特性</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python异常处理/">Python异常处理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python垃圾回收机制/">Python垃圾回收机制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 赵子乔<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

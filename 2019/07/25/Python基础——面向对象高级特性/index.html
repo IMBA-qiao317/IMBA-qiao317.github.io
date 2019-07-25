@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Python基础——面向对象高级特性 | 钢棍乔师傅的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="类属性与实例属性基础概念：类属性就是对类对象所拥有的属性，它被所有类对象的实例对象所共有，在内存中只存在一个副本。 在之前的学习中，面向对象的基本特性中接触的就是实例属性，也被称为对象属性，它不被所有类对象的实例化对象所共有，在内存中的副本个数取决于对象个数。 类属性与实例属性的区别：1.定义不同。2.所占用的内存不同。3.调用的时候不同。类属性：直接定义在类里边，只存一份，与对象的个数无关（类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python基础——面向对象高级特性">
+<meta property="og:url" content="http://yoursite.com/2019/07/25/Python基础——面向对象高级特性/index.html">
+<meta property="og:site_name" content="钢棍乔师傅的个人博客">
+<meta property="og:description" content="类属性与实例属性基础概念：类属性就是对类对象所拥有的属性，它被所有类对象的实例对象所共有，在内存中只存在一个副本。 在之前的学习中，面向对象的基本特性中接触的就是实例属性，也被称为对象属性，它不被所有类对象的实例化对象所共有，在内存中的副本个数取决于对象个数。 类属性与实例属性的区别：1.定义不同。2.所占用的内存不同。3.调用的时候不同。类属性：直接定义在类里边，只存一份，与对象的个数无关（类">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190617104739994.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-07-25T02:28:38.745Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python基础——面向对象高级特性">
+<meta name="twitter:description" content="类属性与实例属性基础概念：类属性就是对类对象所拥有的属性，它被所有类对象的实例对象所共有，在内存中只存在一个副本。 在之前的学习中，面向对象的基本特性中接触的就是实例属性，也被称为对象属性，它不被所有类对象的实例化对象所共有，在内存中的副本个数取决于对象个数。 类属性与实例属性的区别：1.定义不同。2.所占用的内存不同。3.调用的时候不同。类属性：直接定义在类里边，只存一份，与对象的个数无关（类">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190617104739994.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="钢棍乔师傅的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">钢棍乔师傅的个人博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Python开发与人工智能</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Python基础——面向对象高级特性" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/25/Python基础——面向对象高级特性/" class="article-date">
+  <time datetime="2019-07-25T02:28:08.000Z" itemprop="datePublished">2019-07-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python基础——面向对象高级特性
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+<h1 id="类属性与实例属性"><a href="#类属性与实例属性" class="headerlink" title="类属性与实例属性"></a>类属性与实例属性</h1><p><strong>基础概念</strong>：类属性就是对类对象所拥有的属性，它被所有类对象的实例对象所共有，在内存中只存在一个副本。</p>
+<p>在之前的学习中，面向对象的基本特性中接触的就是<strong>实例属性</strong>，也被称为对象属性，它不被所有类对象的实例化对象所共有，在内存中的副本个数取决于对象个数。</p>
+<p><strong>类属性与实例属性的区别</strong>：<br>1.定义不同。<br>2.所占用的内存不同。<br>3.调用的时候不同。<br>类属性：直接定义在类里边，只存一份，与对象的个数无关（类名.属性名，对象名，属性名）<br>对象属性：属性和对象绑定在一起：self.name=‘xxxx’，有多少个对象，就需要存储多少份；对象名.属性名。</p>
+<p><strong>实例：日期显示以及字符串处理</strong></p>
+<pre><code>import string
+from collections import Counter
+
+
+class People(object):
+    # 类属性， 在内存中只存一份；
+    country = &apos;china&apos;
+    __gender = &apos;male&apos;
+    def __init__(self, name, age, money):
+        # self.name, self.age, self.money: 实例属性（有多少个对象， 就有多少份属性;）
+        self.name = name
+        self.age = age
+        self.money = money
+
+
+# 实例化三个对象， 有三份实例属性；
+p1 = People(&quot;westos1&quot;, 10, 1000000000)
+print(p1.name)
+print(p1.age, id(p1.age))
+print(p1.money, id(p1.money))
+p2 = People(&quot;westos2&quot;, 10, 1000000000)
+print(p2.money, id(p2.money))
+p3 = People(&quot;westos3&quot;, 10, 1000000000)
+print(p3.money, id(p3.money))
+
+
+
+# 调用p1, p2, p3的属性country： 当对象没有country属性时， 调用类的属性country;
+print(p1.country, p2.country, p3.country)
+# 设置p2对象的属性country为‘us’, 并不会修改类的属性；
+p2.country = &apos;us&apos;
+# 调用p1, p2, p3的属性country： 当对象没有country属性时， 调用类的属性country; 当对象有country‘属性时， 调用拥有的country&apos;属性；
+print(p1.country, p2.country, p3.country)
+
+# 类属性名如果前面添加双下划线， 那么他是私有属性， 类的外部时不能访问的；
+print(p1._People__gender)
+print(People.country)</code></pre><h1 id="静态方法与类方法"><a href="#静态方法与类方法" class="headerlink" title="静态方法与类方法"></a>静态方法与类方法</h1><p><strong>基础概念</strong>：<br><strong>1.类方法</strong>：类方法是类对象所拥有的方法，需要用<strong>装饰器</strong>一般以@classmethod来标识其为类方法。<br>1).对于类方法，第一个参数必须是类对象，让类对象作为第一个参数。（cls是形参，可以修改为其他变量名，但是最好用‘cls’）<br>2).能够通过实例对象和类对象去访问。</p>
+<p><strong>2.静态方法</strong>：静态方法需要用装饰器一般以@staticmethod来标识其为静态方法。<br>1).静态方法不需要定义参数<br>    2).能够通过实例对象和类对象去访问。</p>
+<pre><code>实例：日期显示
+
+
+class Date(object):
+
+    def __init__(self, year=2008, month=8, day=8):
+    #魔术方法（构造方法）
+        self.year = year
+        self.month = month
+        self.day = day
+
+    def echo(self):
+    #实例方法
+        print(&apos;%s-%s-%s&apos; % (self.year, self.month, self.day))
+
+    @classmethod
+    #类方法，默认传递的第一个参数为类名
+    def as_string(cls, str):
+        month, day, year = str.split(&apos;/&apos;)
+        #将字符串进行处理分割，并且将其传给echo函数
+        d1 = cls(year, month, day)
+        return d1
+        #返回处理好的字符串
+
+    @staticmethod
+    #静态方法，不需要引入参数
+    def is_right(str):
+        month,day,year = map(int,str.split(&apos;/&apos;）
+        #对字符串进行修改
+    return 0&lt;month&lt;12 and 0&lt;day&lt;31 and day &gt;0
+    #返回值为布尔值，判断输入的年日月份是否合法
+
+    d=Date()
+    d.echo()
+    #实例方法的结果导出，输入出来，结果为对象的属性：2008-8-8
+
+    str = ‘12/23/2008’
+    #导入一个新的字符串
+    d = Date.as_string(str)
+    #将字符串分段处理，将值返回给类方法
+    d.echo()
+    #输出类方法处理完的结果，结果为2018-12-3
+
+
+
+    str = &apos;13/32/-1&apos;
+    #输入不合法字符串，返回值为False
+    print(Date.is_right(str))
+    #将不合法的输出打印出来，结果为False</code></pre><h1 id="Property属性"><a href="#Property属性" class="headerlink" title="Property属性"></a>Property属性</h1><p><strong>什么是Property属性？</strong><br>1).Python内置的@property装饰器就是负责把一个方法变成属性调用的。<br>2).@property本身又创建了另一个装饰器@state.settrt，负责把一个setter方法变成属性赋值，于是我们就拥有了一个可以控制的属性操作。<br>3).@property广泛应用在类的定义中，可以让调用者写出简短的代码，同时保证对参数进行必要的检查，这样，程序就减少了出错的可能性。</p>
+<p><strong>代码实例</strong>：修改删除日期月份</p>
+<pre><code>import time
+
+
+class Date(object):
+    def __init__(self, year=None, month=None, day=None):
+        self.__year = year
+        self.__month = month
+        self.__day = day
+
+    @property # 类属性, 获取属性名时简洁: 对象名.属性名
+    def month(self):
+        if 0 &lt; self.__month &lt;= 12:
+            return self.__month
+
+    @month.setter # 设置属性装饰器， 当设置属性时简洁： 对象名.属性名=新的值
+    def month(self, month):
+        if 0 &lt; self.__month &lt;= 12:
+            self.__month = month
+            return  True
+
+    @month.deleter # 删除属性装饰器， 当删除属性时简洁： del 对象名.属性名
+    def month(self):
+        del self.__month
+
+
+d = Date(2019, 10, 10)
+
+
+print(d.month)
+d.month = 12
+print(&quot;正在修改月份....&quot;)
+print(d.month)
+
+del d.month
+print(&quot;正在删除月份....&quot;)
+print(d.month)
+
+
+
+
+# 不简洁的方式： 不太建议
+# # 获取月份====print(d.month)
+# print(d.month())
+#
+# # 设置月份======d.month = 12
+# d.set_month(12)
+# print(d.month())
+#
+# # 删除月份信息 ===== del d
+# d.del_year()
+# print(&quot;正在删除月份信息.....&quot;)
+# print(d.month())</code></pre><h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><p><strong>什么是单例模式？</strong><br>    <img src="https://img-blog.csdnimg.cn/20190617104739994.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE4NzY2OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>基本概念</strong>：对于系统的某些类来说，只有一个实例是十分重要的，例如，一个系统中可以存在多个打印任务，但是只能有一个正在工作的任务；一个系统只能有一个<strong>窗口管理器</strong>或者<strong>文件系统</strong>；一个系统只能有一个<strong>计时工具或者ID生成器</strong>。如在Windows中就只能打开一个任务管理器。将窗口对象进行唯一化，将弹出多个窗口，如果这些窗口显示的内容完全一致，则是重复对象，浪费内存资源；如果这些窗口显示的内容不一致，则意味着在某一瞬间系统有多个状态，与实际不符，也会给用户带来误解，不知道哪一个才是真实的状态。因此有时确保系统中的某个对象唯一性即一个类只能有一个实例非常重要。</p>
+<p><strong>单例模式代码实现</strong>：</p>
+<pre><code>def singleton(cls):
+    &quot;&quot;&quot;
+    用来装饰类的装饰器: 实例化类时， 只实例化一个对象；
+    &quot;&quot;&quot;
+    # 初始化一个字典instances, key: 类名 ， value: 类实例化的对象
+    instances = {}
+    def wrapper(*args, **kwargs):
+        &quot;&quot;&quot;
+        如果类在缓存instances存在时， 直接返回类对应的对象;
+        如果类不在缓存instances存在时， 先实例化对象, 将类名和对象名存储到缓存中instances;
+        &quot;&quot;&quot;
+        if cls in instances:
+            return  instances[cls]
+        else:
+            # instances[cls] = cls(*args, **kwargs)
+            obj = cls(*args, **kwargs)
+            instances[cls] = obj
+            return obj
+    return  wrapper
+
+@singleton   # @single  =====&gt; Student = singleton(Student)
+class Student(object):
+    pass
+
+# # 如果类没有被装饰器sigleton装饰的化， 返回的s1和s2时两个不同的对象（内存地址不同）;
+# s1 = Student()
+# s2 = Student()
+# print(s1, s2)
+
+# 如果类有被装饰器sigleton装饰， 返回的s1和s2时两个相同的对象（内存地址相同）;
+s1 = Student()
+s2 = Student()
+print(s1, s2</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/25/Python基础——面向对象高级特性/" data-id="cjyiaa1kq0006xz5e0igpepe6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/07/25/Python垃圾回收机制/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Python垃圾回收机制
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/07/25/Python面向对象——魔术方法/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python面向对象——魔术方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/25/Python函数/">Python函数</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python文件处理/">Python文件处理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python高级特性/">Python高级特性</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python异常处理/">Python异常处理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/Python垃圾回收机制/">Python垃圾回收机制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 赵子乔<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
